@@ -1,0 +1,53 @@
+.To-Do {
+    padding: 10px 70px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.To-Do .add-new,
+.To-Do .add-existing {
+    width: 350px;
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    box-shadow: 0 7px 25px var(--boxshadow);
+    align-items: center;
+    padding: 0px 40px;
+    margin-bottom: 20px;
+}
+.To-Do .add-new:hover,
+.To-Do .add-existing:hover {
+    background: var(--purple3);
+    cursor: pointer;
+}
+
+.To-Do .add-new ,
+.To-Do .add-existing {
+    background:  var(--quizbg2)
+}
+
+.To-Do .add-new .new,
+.To-Do .add-existing .new {
+    font-size: 1.2rem;
+    color: var(--purple4);
+    max-width: 200px;
+    line-height: 2rem;
+
+}
+.To-Do .add-new .icon-new ,
+.To-Do .add-existing .icon-new {
+    font-size: 2.5rem;
+    color: var(--pink);
+}
+.To-Do .add-new:hover .new,
+.To-Do .add-existing:hover .icon-new,
+.To-Do .add-existing:hover .new,
+.To-Do .add-new:hover .icon-new {
+    color: var(--white3);
+}
+.To-Do .add-existing:hover .icon-new,
+.To-Do .add-new:hover .icon-new {
+    color: var(--pink);
+}

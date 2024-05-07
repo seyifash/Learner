@@ -1,38 +1,67 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+   
+
+* {
+    padding: 0;
+    text-decoration: none;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Quicksand';
+    list-style: none;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+    --blue: #2a2185;
+    --white: #fff;
+    --purple: rebeccapurple;
+    --purple2: rebeccapurple;
+    --black1: #222;
+    --black2: #999;
+    --primary-color-light: #F6F5FF;
+    --toggle-color: #DDD;
+    --tran-03: all 0.3s ease;
+    --tran-05: all 0.5s ease;
+    --white2: #fff;
+    --white3: #fff;
+    --dark: #1a1a1a;
+    --purple3: rebeccapurple;
+    --grey: #333;
+    --dark2: #000;
+    --boxshadow : rgba(0, 0, 0, 0.08);
+    --purple4: rebeccapurple;
+    --white4: #fff;
+    --quizbg : rgb(235, 234, 234);
+    --quizbg2: #fff;
+    --rgba: rgba(255, 255, 255, 0.5);
+    --pink : #fbd3d3;
+    --pink2: #fbd3d3;
+    --pink3: #fbd3d3;
+    --pink4: #fff;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: var(--white);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body.dark {
+    --white: #222;
+    --white3: #fff;
+    --purple: #333;
+    --primary-color-light: #3A3B3C;
+    --purple2: #fff;
+    --white2: rebeccapurple;
+    --dark: #fff;
+    --black2: #fff; 
+    --grey: #fff;
+    --boxshadow: rgba(0, 0, 0, 0.9);
+    --purple4: white;
+    --white4: rebeccapurple;
+    --quizbg: #333;
+    --quizbg2: #333;
+    --rgba: rgba(0, 0, 0, 0.6);
+    --pink2: rebeccapurple;
+    --pink3: #fff;
+    --pink4: #fbd3d3;
 }

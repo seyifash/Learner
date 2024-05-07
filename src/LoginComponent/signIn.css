@@ -1,0 +1,140 @@
+
+.signIn {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rebeccapurple;
+    overflow-x: hidden;
+    font-family: 'Quicksand';
+    padding-top: 40px;
+  }
+  .signIn h1 {
+    width: 400px;
+    font-size: 6rem;
+    font-weight: 900;
+    text-align: start;
+    line-height: 5rem;
+    color: #fbd3d3;
+  }
+  .signIn h3 {
+    width: 400px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: start;
+    padding-bottom: 20px;
+  }
+
+.signIn .section-signin,.signIn .section-success {
+        padding: 15px 20px;
+        width: 400px;
+        background-color: rgba(255, 255, 255, 0.3);
+       /* min-height: 350px;*/
+}
+
+.signIn .section-success h1 {
+    font-size: 2rem;
+    line-height: 2.5rem;
+}
+.signIn .section-success p a {
+    font-size: 1.2rem;
+    color: rebeccapurple;
+    font-weight: 600;
+}
+
+.signIn .section-success p a:hover{
+    color: #000;
+}
+
+.section-signin .errmsg {
+    margin: 10px 0px;
+    padding: 10px 10px;
+    background: rgb(236, 152, 152);
+    color: red;
+    font-size: 14px;
+    width: 100%;
+}
+
+.section-signin h1 {
+    font-size: 2rem;
+    color: #fbd3d3;
+}
+
+.section-signin form {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.section-signin label {
+    color: #000;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.section-signin label .valid {
+    display: inline-block;
+}
+
+.section-signin label span {
+    color: rgb(21, 172, 21);
+    font-size: 1rem;
+}
+.section-signin label .hide {
+    display: none;
+}
+
+.section-signin label .invalid {
+    color: red;
+}
+
+.section-signin input {
+    height: 40px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    background: hsl(0, 0%, 100%);
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.section-signin .instructions{
+    margin: 10px 0px;
+    padding: 5px 10px;
+    background: #000;
+    color: #fbd3d3;
+    font-size: 12px;
+    line-height: 18px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.offscreen {
+    position: absolute;
+    left: -1500px;
+}
+
+
+
+.section-signin button {
+    height: 50px;
+    color: #fbd3d3;
+    background: #000;
+    margin: 15px 0px;
+    border-radius: 13px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.section-signin button[disabled] {
+    opacity: 0.5; 
+    cursor: not-allowed;
+  }
+
+  .section-signin p .line a{
+    color: #fbd3d3;
+  }

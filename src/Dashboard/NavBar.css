@@ -1,0 +1,208 @@
+.container {
+    position: relative;
+    width: 100%;
+}
+.navigation {
+    position: fixed;
+    width: 300px;
+    height: 1000%;
+    background: var(--purple);
+    border-left: 10px solid var(--purple);
+    transition: 0.5s;
+    overflow: hidden;
+}
+.navigation.active {
+    width: 80px;
+}
+
+.navigation ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+.navigation ul li {
+    position: relative;
+    width: 100%;
+    list-style: none;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+
+.navigation ul li:hover,
+.navigation ul li.hovered  {
+    background: var(--white2);
+}
+
+.navigation ul li:nth-child(1) {
+    margin-bottom: 30px;
+    pointer-events: none;
+}
+.navigation ul li a {
+    position: relative;
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: var(--white3);
+    font-weight: 600;
+}
+
+
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
+    color: var(--pink3);
+}
+
+.navigation ul li a .icon {
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 55px;
+    line-height: 65px;
+    text-align: center;
+}
+
+.navigation ul li a .icon i {
+    font-size: 1.50rem;
+}
+
+.navigation ul li a .title {
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 55px;
+    line-height:55px;
+    text-align: start;
+    white-space: nowrap;
+}
+
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -45px;
+    width: 45px;
+    height: 45px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 30px 30px 0 10px var(--white2);
+    pointer-events: none;
+}
+
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after{
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -45px;
+    width: 45px;
+    height: 45px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 30px -30px 0 10px var(--white2);
+    pointer-events: none;
+}
+
+.mode {
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: var(--white2);
+    
+}
+.mode .mode-inner {
+    display: flex;
+}
+
+.mode .moon-sun {
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 55px;
+    line-height: 65px;
+    text-align: center;
+    padding-left: 18px;
+}
+.navigation ul li .mode-text {
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 55px;
+    line-height:55px;
+    text-align: start;
+    white-space: nowrap;
+    padding-left: 10px;    
+}
+
+
+.mode i {
+    /*position: absolute;*/
+    transition: var(--tran-03);
+    font-size: 1.50rem;
+   
+}
+
+.mode i.sun {
+    opacity: 0;
+}
+body.dark .navigation ul li .mode-text {
+    padding-left: 32px;
+}
+body.dark .mode .moon-sun{
+    margin-left: -22px;
+}
+
+body.dark .navigation .mode i.sun {
+    opacity: 1;
+}
+
+body.dark .navigation .mode i.moon{
+    opacity: 0;
+}
+.navigation .mode .toggle-switch {
+    position: absolute;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-width: 60px;
+    cursor: pointer;
+    border-radius: 6px;
+    /*background: var(--purple);*/
+    transition: var(--tran-05);
+    
+}
+.toggle-switch .switch {
+    position: relative;
+    height: 22px;
+    width: 44px;
+    border-radius: 25px;
+    background: var(--toggle-color);
+    transition: var(--tran-05);
+}
+.switch::before {
+    content: '';
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    background: var(--white);
+    transition: var(--tran-03);
+}
+
+.navigation ul .mode:hover {
+    /*color: var(--pink2);*/
+    border-radius: 6px ;
+    background: var(--purple)
+    /*background-color: var(--primary-color-light);*/
+}
+body.dark .switch::before {
+    left: 25px;
+}
