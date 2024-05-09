@@ -1,0 +1,56 @@
+.studentTable {
+    width: 95%;
+    margin: 10px auto;
+    margin-top: 30px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    box-shadow: 0px 7px 25px var(--boxshadow);
+  }
+  
+  .studentTable h1 {
+    color: #444;
+  }
+  
+  .studentTable table {
+    width: 100%;
+    padding: 20px 0px;
+    margin-top: 20px;
+    border-collapse: collapse;
+  }
+  
+  .studentTable thead {
+    width: 100%;
+    border-bottom: 3px solid var(--purple3);
+  }
+  
+  .studentTable th {
+    padding: 10px 0px;
+    text-align: start;
+    color: rebeccapurple;
+    font-weight: 600;
+    font-size: 1.2rem;
+  }
+  
+  .studentTable td {
+    padding-top: 20px;
+    border-bottom: 3px solid var(--purple3);
+  }
+  
+  .quiz-info,
+  .subject-info {
+    vertical-align: top;
+    border-right: 3px solid var(--purple3);
+    text-align: center;
+    font-weight: 700;
+    color: var(--dark2);
+    font-size: 1.2rem;
+  }
+  
+  .candidate-info {
+    border-left: 3px solid var(--purple3); 
+    text-align: center;
+    text-transform: capitalize;
+    color: var(--dark2);
+    font-weight: 600;
+  }
+  

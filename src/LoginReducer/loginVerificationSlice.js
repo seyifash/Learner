@@ -33,7 +33,7 @@ const loginSlice = createSlice({
                 const result = EMAIL_REGEX.test(action.payload)
                 state.validEmail = result;
         },
-          setValidPwd(state, action){
+        setValidPwd(state, action){
                 const result = PWD_REGEX.test(action.payload.pwd)
                 state.validPwd = result
                 const match = action.payload.pwd ===  action.payload.matchPwd

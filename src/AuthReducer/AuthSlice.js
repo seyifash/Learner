@@ -11,7 +11,8 @@ const initialState = {
     userId: storedUserId ? storedUserId : null,
     error: '',
     isLoggedIn: !!storedUserId, 
-    success: false 
+    success: false, 
+    teacherImage: null
 }
 
 export const createUser = createAsyncThunk('userId/createUser', async (formData) => {
@@ -37,10 +38,10 @@ export const getUser = createAsyncThunk('userId/getUser', async (formData) => {
             headers: {"Content-Type" : 'application/json'}
             });
 
-        const { teacherId, isValid } = response.data;
+        const { teacherId, isValid, teacherImage } = response.data;
         if (isValid) {
             localStorage.setItem('userId', teacherId)
-            return teacherId;
+            return { teacherId, teacherImage};
         } else {
             throw new Error("User does not exist");
         }
@@ -65,6 +66,9 @@ const AuthSlice = createSlice({
         },
         setErrorMsg(state, action) {
             state.error = action.payload
+        },
+        updateImage(state, action) {
+            state.teacherImage = action.payload
         }
 
     },
@@ -90,8 +94,10 @@ const AuthSlice = createSlice({
             state.loading = true;
         })
         .addCase(getUser.fulfilled, (state, action) => {
+            const {teacherId , teacherImage} = action.payload
             state.loading = false;
-            state.userId = action.payload;
+            state.userId = teacherId;
+            state.teacherImage = teacherImage
             state.success = true
             state.error = ''
         })

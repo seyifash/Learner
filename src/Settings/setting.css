@@ -1,0 +1,277 @@
+.settings {
+    margin-top: 30px;
+ width: 100%;
+ padding: 0px 20px;
+}
+
+.settings .editpics {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.settings .editpics .imageSuccess {
+    color: rgb(14, 207, 14);
+    margin-bottom: 10px;
+}
+
+.settings .editpics .imageError {
+    color: red;
+}
+
+.settings .picsEdit, .settings .editpics .picsImage  {
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+}
+.settings .editpics .picsEdit span {
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.settings .editpics .picsEdit span i {
+    font-size: 1rem;
+}
+.settings .picsEdit .fn {
+    margin-top: 10px;
+    display: flex;
+    width:100%;
+    justify-content: center;
+}
+
+.labelWrapper {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+  }
+
+  .labelWrapper span {
+    cursor: pointer;
+  }
+.settings .picsEdit .fn .labelWrapper input[type="file"] {
+    display: none;
+}
+.settings .picsEdit .fn .labelWrapper label {
+    display: flex;
+    min-width: 120px;
+    justify-content: space-between;
+    color: var(--white);
+    background: var(--purple3);
+    text-align: center;
+    align-items: center;
+    padding: 5px 10px;
+    font-size: 14px;
+    user-select: none;
+    cursor: pointer;
+    box-shadow: 5px 15px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 3px;
+}
+.settings .picsEdit .fn .labelWrapper label  i {
+    font-size: 14px;
+}
+.settings .editpics .picsImage input {
+    width: 100%;
+    display: flex;
+    justify-content: center
+}
+.settings .editpics .picsEdit i {
+    font-size: 6rem;
+    margin-bottom: 10px;
+}
+
+.settings .editpics .picsEdit img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px
+}
+
+.settings .editpics .picsEdit .fn span,
+.settings .picsEdit span {
+    color: var(--purple3);
+    font-weight: 600;
+}
+
+.settings .editpics .picsImage span  {
+    display: block;
+    color: var(--purple3)
+}
+
+
+.settings .editpics .picsImage img{
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+}
+
+.settings .userName, 
+.settings .password,
+.settings .email,
+.settings .forgotPassword  {
+    margin: 20px 0px;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 20px;
+}
+
+.settings .userName h4,
+.settings .password h4,
+.settings .email h4,
+.settings .forgotPassword h4 {
+    /*color: var(--dark);*/
+    font-size: 1rem;
+    margin-bottom: 15px;
+    color: var(--purple3)
+}
+.settings .userName span,
+.settings .password span,
+.settings .forgotPassword span,
+.settings .email span  {
+    color: var(--dark);
+    line-height: 1.5rem;
+    padding-bottom: 5px;
+    cursor: pointer;
+}
+
+.settings .userName .changes,
+.settings .password .changes,
+.settings .forgotPassword .changes {
+    color: var(--pink);
+    cursor: pointer;
+}
+
+.userName .namePopUp,
+.password .namePopUp2 {
+    display:flex;
+    flex-direction: column;
+}
+
+.userName .namePopUp .errmsg,
+.password .namePopUp2 .errmsg {
+    margin: 10px 0px;
+    padding: 10px 10px;
+    background: rgb(236, 152, 152);
+    color: red;
+    font-size: 14px;
+    width: 400px;
+}
+.userName .namePopUp .success,
+.password .namePopUp2 .success{
+    color: rgb(14, 204, 14);
+    font-size: 2rem;
+}
+.settings .userName,
+.settings .password {
+    position: relative;
+}
+
+.userName .namePopUp,
+.password .namePopUp2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--rgba);
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: fixed;
+    z-index: 3;
+    bottom: 125%;
+    left: 0%;
+    top: 0%;
+}
+
+.userName .namePopUp .PopUp,
+.password .namePopUp2 .PopUp2 {
+    display: flex;
+    flex-direction: column;
+    background: rebeccapurple;
+    width: 400px;
+    min-height: 150px;
+    border-radius: 10px;
+    color: #fff;
+    padding: 20px 20px;
+}
+.userName .namePopUp .PopUp label,
+.password .namePopUp2 .PopUp2 label {
+    width: 100%;
+    text-align: start;
+    color: var(--pink);
+}
+
+.userName .namePopUp .PopUp label .valid,
+.password .namePopUp2 .PopUp2 label .valid {
+    display: inline-block;
+}
+
+.userName .namePopUp .PopUp label span,
+.password .namePopUp2 .PopUp2 label span {
+    color: rgb(21, 172, 21);
+    font-size: 1rem;
+}
+.userName .namePopUp .PopUp label .hide,
+.password .namePopUp2 .PopUp2 label .hide {
+    display: none;
+}
+
+.userName .namePopUp .PopUp label .invalid,
+.password .namePopUp2 .PopUp2 label .invalid {
+    color: red;
+}
+
+.userName .namePopUp .PopUp button,
+.password .namePopUp2 .PopUp2 button {
+    height: 50px;
+    width: 100px;
+    color: #fff;
+    background: #000;
+    margin: 15px 0px;
+    border-radius: 13px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.userName .namePopUp .PopUp button[disabled],
+.password .namePopUp2 .PopUp2 button[disabled] {
+    opacity: 0.5; 
+    cursor: not-allowed;
+  }
+
+.userName .namePopUp .PopUp input,
+.password .namePopUp2 .PopUp2 input{
+    height: 40px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    background: hsl(0, 0%, 100%);
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.userName .namePopUp .PopUp .instructions,
+.password .namePopUp2 .PopUp2 .instructions{
+    margin: 10px 0px;
+    padding: 5px 10px;
+    background: #000;
+    color: #fff;
+    font-size: 12px;
+    line-height: 18px;
+    border-radius: 10px;
+    width: 100%;
+    text-align: start;
+}
+
+.offscreen {
+    position: absolute;
+    left: -1500px;
+}

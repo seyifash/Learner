@@ -6,7 +6,9 @@ import DashBoard from './Dashboard/DashBoard'
 import SignIn from './LoginComponent/SignIn';
 import TestCreation from './TestCreation/testCreation';
 import Created from './viewAllCreated/Created';
-import Help from './Settings/Help'
+import Help from './Settings/Help';
+import Settings from './Settings/settings';
+import Students from './Students/Student'
 
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
               <Route path="/createTest" element={<TestCreation />} />
               <Route path="/created" element={<Created />} />
               <Route path="/help" element={<Help />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/students" element={<Students />} />
             </>
             )}
         </Routes>
