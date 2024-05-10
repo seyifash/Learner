@@ -89,12 +89,14 @@ const TestSlice = createSlice({
             state.quizId = ''
             state.code = ''
             state.showForm = false
+            state.quizId = ''
         },
         handleCreateExisting(state, action){
             state.showQuestion = true;
             state.testDuration = 30;
             state.Question = action.payload
             state.createNew = false;
+            state.quizId = ''
         },
         DurationAndNum(state, action) {
             state.testDuration = action.payload.duration;

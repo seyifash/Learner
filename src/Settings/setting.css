@@ -137,6 +137,7 @@
     line-height: 1.5rem;
     padding-bottom: 5px;
     cursor: pointer;
+    font-weight: 600;
 }
 
 .settings .userName .changes,
