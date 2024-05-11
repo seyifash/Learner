@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useSelector, useDispatch} from 'react-redux'
 import './NavBar.css';
 import { useNavigate } from "react-router-dom";
@@ -14,6 +14,21 @@ const NavBar = () => {
     const dispatch =  useDispatch()
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const handleLogoutEvent = (event) => {
+            if (event.key === 'logoutEvent') {
+                dispatch(authActions.logOut());
+                navigate("/sign-in");
+            }
+        };
+
+        window.addEventListener('storage', handleLogoutEvent);
+
+        return () => {
+            window.removeEventListener('storage', handleLogoutEvent);
+        };
+    }, [dispatch, navigate]);
 
     const handleMouseOver = (itemId) => {
         dispatch(toggleActions.toggleActiveItem(itemId))

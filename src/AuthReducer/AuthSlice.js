@@ -61,6 +61,7 @@ const AuthSlice = createSlice({
         ,
         logOut(state) {
                 localStorage.removeItem('userId')
+                localStorage.setItem('logoutEvent', Date.now());
                 state.isLoggedIn =  false
                 state.userId = null
         },
@@ -79,6 +80,9 @@ const AuthSlice = createSlice({
         })
         .addCase(createUser.fulfilled, (state, action) => {
             state.loading = false
+            if(action.payload) {
+                state.isloggedIn = true
+            }
             state.userId = action.payload
             state.success = true
             state.error = ''
@@ -97,6 +101,9 @@ const AuthSlice = createSlice({
             const {teacherId , teacherImage} = action.payload
             state.loading = false;
             state.userId = teacherId;
+            if(teacherId){
+                state.isLoggedIn = true
+            }
             state.teacherImage = teacherImage
             state.success = true
             state.error = ''

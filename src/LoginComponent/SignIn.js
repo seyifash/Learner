@@ -4,7 +4,7 @@ import {  useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import InputGenerator from "./inputGenerator";
 import LabelGenerator from "./LabelGenerator";
-import { authActions, getUser } from "../AuthReducer/AuthSlice";
+import { getUser } from "../AuthReducer/AuthSlice";
 import './signIn.css';
 
 const SignIn = () => {
@@ -18,7 +18,7 @@ const SignIn = () => {
     });
 
     const Auth = useSelector((state) => state.auth);
-    const {error, isLoggedIn, userId } = Auth;
+    const {error, isLoggedIn } = Auth;
     const dispatch = useDispatch();
 
     const handleChange = (e) => {
@@ -31,15 +31,15 @@ const SignIn = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(getUser(formData));
-        
-        if(userId){
-        dispatch(authActions.loginUser(true))
-        } 
-        if(isLoggedIn){
-            return  navigate("/dashboard");
-        }
+        await dispatch(getUser(formData));
     } 
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            navigate("/dashboard");
+        }
+    }, [isLoggedIn, navigate]);
+
     return (
         <div className="signIn">
             <h1>Hello</h1>
