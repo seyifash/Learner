@@ -1,0 +1,74 @@
+.fgpwd{
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rebeccapurple;
+    overflow-x: hidden;
+    font-family: 'Quicksand';
+    padding-top: 40px;
+  }
+
+  .fgpwd h2 {
+    font-size: 3rem;
+    font-weight: 900;
+    text-align: start;
+    line-height: 5rem;
+    color: #fbd3d3;
+  }
+
+  .fgpwd form{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 20px 20px;
+    border-radius: 7px;
+  }
+  .fgpwd form p {
+    color: var(--pink);
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .fgpwd form div {
+    width: 100%;
+    
+  }
+
+.fgpwd form div input {
+    width: 100%;
+    height: 40px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    background: hsl(0, 0%, 100%);
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+label {
+    width: 100%;
+    color: #000;
+    font-size: 1rem;
+    font-weight: 700;
+}
+.fgpwd form button {
+    height: 50px;
+    width: 120px;
+    color: #fbd3d3;
+    background: #000;
+    margin: 15px 0px;
+    margin-bottom: 4px;
+    border-radius: 13px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.fgpwd form button[disabled] {
+    opacity: 0.5; 
+    cursor: not-allowed;
+  }

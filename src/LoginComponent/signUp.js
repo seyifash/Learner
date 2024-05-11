@@ -26,7 +26,7 @@ const SignUp = () => {
 
     const loginVerifyState = useSelector((state) => state.loginVerify);
     const Auth = useSelector((state) => state.auth);
-    const { error, isLoggedIn, userId } = Auth;
+    const { error, isLoggedIn} = Auth;
     const dispatch = useDispatch();
 
     const handleChange = (e) => {
@@ -73,14 +73,13 @@ const SignUp = () => {
             return;
         } else {
            dispatch(createUser(formData));
-            if(userId){
-            dispatch(authActions.loginUser(true))
-            } 
-            if(isLoggedIn){
-                return  navigate("/dashboard");
-            }
         }
     } 
+    useEffect(() => {
+        if(isLoggedIn){
+            return  navigate("/dashboard");
+        }
+    })
 
     useEffect(() => {
         dispatch(authActions.setErrorMsg(""));

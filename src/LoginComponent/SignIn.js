@@ -56,11 +56,12 @@ const SignIn = () => {
                     <button disabled={!formData.password || !formData.email ? true : false}>
                         Sign In
                     </button>
+                    <span className="forgotPwd"><Link to='/forgotPwd'>Forgot password?</Link></span>
                 </form>
                 <p>
                     Not Yet registered?<br />
                     <span className="line">
-                        <Link href="/sign-up">Sign Up</Link>
+                        <Link to="/sign-up">Sign Up</Link>
                     </span>
                 </p>
             </section>

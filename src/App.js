@@ -14,6 +14,7 @@ import Activities from './Activities/Activities';
 import Contact from './landingPage/Contact/Contact';
 import Blog from './landingPage/Blog/Blog';
 import About from './landingPage/About/About';
+import Forgot from './Forgot/Forgot'
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/forgotPwd" element={<Forgot />} />
           {userId && (
             <>
               <Route path="/dashboard" element={<DashBoard  />} />

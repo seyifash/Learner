@@ -122,6 +122,7 @@
     color: #fbd3d3;
     background: #000;
     margin: 15px 0px;
+    margin-bottom: 4px;
     border-radius: 13px;
     font-size: 1.2rem;
     font-weight: 700;
@@ -137,4 +138,15 @@
 
   .section-signin p .line a{
     color: #fbd3d3;
+  }
+  .section-signin .forgotPwd{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+    font-size: 12px;
+  }
+
+  .section-signin .forgotPwd a {
+    color: var(--pink)
   }
