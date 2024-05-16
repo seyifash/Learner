@@ -53,9 +53,8 @@
 .choosen  .duration h2,
 .choosen h2 {
     color: var(--black1);
-    padding-left: 5px;
     font-weight: 500;
-    padding-top: 10px;
+    line-height: 2.5rem;
     padding-bottom: 10px;
 }
 
@@ -164,7 +163,7 @@
     width: 70%;
     padding: 15px 10px;
     justify-content: space-between;
-    background: rgb(235, 234, 234);
+    background: var(--quizbg);
     border-radius: 10px;
     color: var(--purple3);
     font-weight: 500;
@@ -180,7 +179,7 @@
     width: 40%;
     padding: 15px 10px;
     justify-content: space-between;
-    background: rgb(235, 234, 234);
+    background: var(--quizbg);
     border-radius: 10px;
     margin-top: 30px;
     margin-bottom: 30px;
@@ -192,7 +191,7 @@
     display: flex;
     width: 40%;
     padding: 15px 10px;
-    background: rgb(235, 234, 234);
+    background: var(--quizbg);
     border-radius: 10px;
     color: var(--purple3);
     text-decoration: none;
@@ -219,3 +218,44 @@
 .choosen .my-h2 {
     color: var(--purple3);
   }
+
+@media screen and (max-width: 1040px) {
+
+    .choosen  .duration h2, .choosen h2 {
+        font-size: 1.3rem;
+    }
+
+}
+
+@media screen and (max-width: 799px) {
+
+}
+
+@media screen and (max-width: 477px) {
+    .choosen {
+        padding: 30px;
+    }
+    .choosen  .duration h2, .choosen h2 {
+        line-height: 2rem;
+        font-size: 1.1rem;
+    }
+
+    .choosen .duration .new-input, 
+    .choosen .question-details .new-input, 
+    .choosen .question-details .textarea {
+        height: 35px;
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+    .choosen .duration .label, 
+    .choosen .question-details .label, 
+    .choosen .question-details .imagelabel {
+        font-size: 13px;
+    }
+
+    .submit-details-btn {
+        width: 110px;
+        font-size: 13px;
+        padding: 10px 0px;
+    }
+}

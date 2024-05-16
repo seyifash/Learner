@@ -5,7 +5,7 @@
 .choosen2 h2,
 .choosen2 h4{
     color: var(--pink2);
-    padding: 20px 10px;
+    line-height: 4rem;
     font-weight: 400;
 
 }
@@ -40,7 +40,8 @@
 .choosen2 .Each-question .header {
     line-height: 30px;
     color: var(--black1);
-    font-weight: 500;
+    font-weight: 600;
+    text-transform: capitalize;
 }
 .choosen2 .Each-question .subject strong,
 .choosen2 .Each-question .header strong {
@@ -219,4 +220,100 @@
 
 .duration form .submit-Btn:hover {
     background: var(--purple3);
+}
+
+@media screen and (max-width: 1040px) {
+    .choosen2 {
+        padding: 20px;
+        padding-left: 20px;
+    }
+
+    .duration form .submit-Btn {
+        width: 130px;
+        font-size: 14px;
+        padding: 13px 0px;
+    }
+    .duration form label {
+        font-size: 16px;
+    }
+
+    .sub-btn {
+        margin-left: 0px;
+    }
+
+    .choosen2 h4 {
+        font-weight: 600;
+        font-size: 1.5rem;
+    }
+
+    .choosen2 .Each-question .subject, 
+    .choosen2 .Each-question .header {
+        font-weight: 600;
+        text-transform: capitalize;
+    }
+
+}
+@media screen and (max-width: 799px) {
+
+    .choosen2 h2, .choosen2 h4 {
+        line-height: 2.5rem;
+    }
+}
+
+@media screen and (max-width: 477px) {
+
+    .choosen2 {
+        padding: 20px;
+        padding-left: 20px;
+    }
+    .duration form .submit-Btn {
+        width: 110px;
+        font-size: 13px;
+        padding: 10px 0px;
+    }
+
+    .choosen2 h2, .choosen2 h4 {
+        color: var(--pink2);
+        font-weight: 400;
+        font-size: 1.2rem;
+        line-height: 3.2rem; 
+    }
+    .duration form label {
+    font-size: 13px;
+    }
+
+    .duration form  .new-input {
+        font-size: 13px;
+    }
+    .duration form .submit-Btn {
+        width: 110px;
+        font-size: 13px;
+        padding: 10px 0px;
+    }
+    .choosen2 .Each-question .Each-quest-num {
+        font-size: 1.2rem;
+        line-height: 1.8rem;
+    }
+
+    .choosen2 .Each-question .Each-question-details img {
+        width: 95%;
+
+    }
+
+    .choosen2 .Each-question p {
+        font-weight: 500;
+        line-height: 25px;
+        font-size: 14px;
+    }
+
+    .choosen2 .Each-question  .options-div span {
+        padding: 12px;
+        font-size: 13px;
+    }
+    .sub-btn {
+        padding: 10px 20px;
+        font-size: 13px;
+        border: none;
+        margin-left: 0px;
+    }
 }

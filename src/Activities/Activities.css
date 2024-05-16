@@ -1,0 +1,39 @@
+
+/*.act {
+    width: 100%;
+    padding: 30px;
+}*/
+
+.act {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .act canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+
+@media screen and (max-width: 1040px) {
+    .act{
+        width: 90%;
+    }
+}
+@media screen and (max-width: 799px) {
+    .act {
+        width: 95%;
+        padding:20px;
+    }
+}
+
+@media screen and (max-width: 477px) {
+    .act {
+        width: 100%;
+        padding:10px;
+    }
+}

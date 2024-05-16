@@ -4,6 +4,8 @@
 }
 .navigation {
     position: fixed;
+    display: flex;
+    justify-content: space-between;
     width: 300px;
     height: 1000%;
     background: var(--purple);
@@ -205,4 +207,47 @@ body.dark .navigation .mode i.moon{
 }
 body.dark .switch::before {
     left: 25px;
+}
+.navigation .x {
+    position: absolute;
+    right: 2%;
+    color: var(--white3);
+    font-size: 1.8rem;
+    line-height:55px;
+    display: none;
+}
+@media screen and (max-width: 1040px) { 
+    .navigation {
+        left: -100%;
+        width: 100%;
+        z-index: 2;
+        }
+    
+        .navigation.active {
+            width: 100%;
+            left: 0px;
+        }
+        .navigation .x {
+            display: block;
+        }
+}
+
+@media (max-width: 799px) {
+
+}
+
+@media screen and (max-width: 477px) {
+    .navigation {
+    left: -100%;
+    width: 100%;
+    z-index: 2;
+    }
+
+    .navigation.active {
+        width: 100%;
+        left: 0px;
+    }
+    .navigation .x {
+        display: block;
+    }
 }

@@ -24,7 +24,7 @@ const TestCreation = () => {
   
 
   return (
-    <div>
+    <div className="test">
       <NavBar />
         <div className={`main ${toggle ? 'active' : ''}`}>
             <TopBar opt={false} />

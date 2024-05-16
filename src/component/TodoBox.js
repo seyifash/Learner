@@ -14,7 +14,7 @@ const ToDo = ({ questions}) => {
                 <span className="icon-new"><i className='bx bx-plus'></i></span>
             </div>
             <div className="add-existing" onClick={() => dispatch(TestActions.handleCreateExisting(questions))}>
-                <span className="new">Add From pre existing question</span>
+                <span className="new">Add From existing question</span>
                 <span className="icon-new"><i className='bx bx-edit-alt'></i></span>
             </div>
         </div>

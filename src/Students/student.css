@@ -53,4 +53,36 @@
     color: var(--dark2);
     font-weight: 600;
   }
+
+
+  @media screen and (max-width: 1040px) {
+  }
+
+  @media screen and (max-width: 799px) {
+
+    .studentTable h1 {
+     font-size: 1.7rem;
+    }
+
+    .studentTable th {
+      padding: 10px 0px;
+      font-size: 14px;
+  }
+  }
+
+
+  @media screen and (max-width: 477px) { 
+
+    .studentTable h1 {
+      font-size: 1.5rem;
+     }
+ 
+     .studentTable th {
+       padding: 10px 0px;
+       font-size: 10px;
+   }
+   .studentTable td {
+    font-size: 13px;
+}
+  }
   

@@ -35,7 +35,7 @@ export const createNewQuiz = createAsyncThunk('quiz/createNewQuiz',
                     formData.append(`image${index}`, question.image);
                 }
             });
-
+            console.log(formData, userId)
             const response = await axios.post(CREATE_NEW_URI + userId,  formData);
             if (response.status !== 200) {
                 throw new Error("Creating question failed");

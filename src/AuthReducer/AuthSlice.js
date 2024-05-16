@@ -5,6 +5,7 @@ const POST_URI = 'http://127.0.0.1:5000/api/learners/v1/sign-up';
 const GET_USER_URI = 'http://127.0.0.1:5000/api/learners/v1/login';
 
 const storedUserId = localStorage.getItem('userId');
+const storedTeacherImage = localStorage.getItem('teacherImage');
 
 const initialState = {
     loading: false,
@@ -12,7 +13,7 @@ const initialState = {
     error: '',
     isLoggedIn: !!storedUserId, 
     success: false, 
-    teacherImage: null
+    teacherImage: storedTeacherImage ? storedTeacherImage : null,
 }
 
 export const createUser = createAsyncThunk('userId/createUser', async (formData) => {
@@ -41,6 +42,7 @@ export const getUser = createAsyncThunk('userId/getUser', async (formData) => {
         const { teacherId, isValid, teacherImage } = response.data;
         if (isValid) {
             localStorage.setItem('userId', teacherId)
+            localStorage.setItem('teacherImage', teacherImage);
             return { teacherId, teacherImage};
         } else {
             throw new Error("User does not exist");
@@ -64,12 +66,14 @@ const AuthSlice = createSlice({
                 localStorage.setItem('logoutEvent', Date.now());
                 state.isLoggedIn =  false
                 state.userId = null
+                state.teacherImage = null;
         },
         setErrorMsg(state, action) {
             state.error = action.payload
         },
         updateImage(state, action) {
             state.teacherImage = action.payload
+            localStorage.setItem('teacherImage', action.payload);
         }
 
     },

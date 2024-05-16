@@ -10,41 +10,42 @@
 .helpForm h2 {
     color: var(--purple3);
     font-family: 'Quicksand';
-    padding: 15px 0px;
+   line-height: 3rem;
 }
 
 .helpForm ul li, 
 .helpForm p {
-    color: var(--dark);
+    color: var(--dark4);
     font-size: 1rem;
     font-weight: 600;
     line-height: 1.8rem;
 }
 
 .helpForm ul li a {
-    color: var(--dark);
+    color: var(--dark4);
 }
 
 
 .helpForm ul li strong {
-    color: var(--pink3);
+    color: var(--pink);
     font-size: 1rem;
     padding-right: 5px;
 
 }
 
 .helpForm form label {
-    color: var(--pink3);
+    color: var(--pink);
     font-size: 1.2rem;
     font-weight: 500;
-    padding: 20px 0px;
+   line-height: 2.5rem;
 }
 
 .helpForm form textarea {
     margin-top: 10px;
-    width: 500px;
+    width: 70%;
     height: 100px;
     border: 1px solid var(--purple3);
+    background: var(--beige);
     border-radius: 10px;
     outline: none;
     padding: 10px 20px;
@@ -52,8 +53,8 @@
 }
 .helpForm form input {
     margin-top: 10px;
-    background: var(--dark2);
-    color: var(--white3);
+    background: var(--black);
+    color: var(--pink);
     border: none;
     padding: 15px 20px;
     font-size: 1rem;
@@ -62,4 +63,26 @@
 }
 .helpForm form input:hover {
     background: var(--purple3)
+}
+
+@media screen and (max-width: 477px) {
+
+    .helpForm h2 {
+      font-size: 1rem;
+      line-height: 2rem;
+    }
+    .helpForm ul li, .helpForm p {
+        font-size: 10px;
+        line-height: 1rem;
+    }
+
+    .helpForm form label {
+        font-size: 14px;
+       line-height: 1rem;
+    }
+
+    .helpForm form input {
+        padding: 10px 15px;
+        font-size: 12px;
+    }
 }

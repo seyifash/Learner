@@ -37,6 +37,9 @@
     --pink2: #fbd3d3;
     --pink3: #fbd3d3;
     --pink4: #fff;
+    --black: #000;
+    --beige: #fff;
+    --dark4: #1a1a1a;
 }
 
 body {
@@ -46,6 +49,7 @@ body {
 }
 
 body.dark {
+    --beige: #444;
     --white: #222;
     --white3: #fff;
     --purple: #333;
@@ -65,4 +69,5 @@ body.dark {
     --pink2: rebeccapurple;
     --pink3: #fff;
     --pink4: #fbd3d3;
+    --dark4: #777;
 }

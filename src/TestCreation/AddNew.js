@@ -17,6 +17,7 @@ const AddNew = () => {
         const updatedQuestions = [...testQuestions];
         updatedQuestions[questionNumber - 1] = { ...questionDetails };
         dispatch(TestActions.NewQuestion(updatedQuestions));
+        console.log(updatedQuestions);
     };
 
     const handleSubmit = async (e) => {
@@ -44,7 +45,7 @@ const AddNew = () => {
                 </div>
             ) : (
                 <div>
-                    <h2 className="my-h2">Create New Quiz</h2>
+                    <h2 style={{display: showForm ? 'none' : 'block'}}className="my-h2">Create New Quiz</h2>
                     {showForm ? (
                         <div>
                             <h2 className="h2">Note that all fields with an asterisk are compulsory</h2>

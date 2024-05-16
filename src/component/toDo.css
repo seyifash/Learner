@@ -1,13 +1,13 @@
 .To-Do {
-    padding: 10px 70px;
+    width: 100%;
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-around;
+    padding: 10px 60px;
 }
 
 .To-Do .add-new,
 .To-Do .add-existing {
-    width: 350px;
+    width: 40%;
     height: 120px;
     display: flex;
     justify-content: space-between;
@@ -50,4 +50,72 @@
 .To-Do .add-existing:hover .icon-new,
 .To-Do .add-new:hover .icon-new {
     color: var(--pink);
+}
+
+@media screen and (max-width: 1040px) { 
+    .To-Do {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+.To-Do .add-new,
+.To-Do .add-existing {
+    width: 42%;
+    padding: 0px 30px;
+}
+
+.To-Do .add-new .new,
+.To-Do .add-existing .new {
+    font-size: 1.2rem;
+}
+.To-Do .add-new .icon-new ,
+.To-Do .add-existing .icon-new {
+    font-size: 1.7rem;
+}
+
+}
+
+@media (max-width: 799px) { 
+
+    .To-Do {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+.To-Do .add-new,
+.To-Do .add-existing {
+    width: 44%;
+    padding: 0px 30px;
+}
+
+.To-Do .add-new .new,
+.To-Do .add-existing .new {
+    font-size: 1rem;
+}
+.To-Do .add-new .icon-new ,
+.To-Do .add-existing .icon-new {
+    font-size: 1.5rem;
+}
+}
+
+@media screen and (max-width: 477px) {
+    .To-Do {
+        width: 100%;
+        padding: 10px 30px;
+    }
+
+.To-Do .add-new,
+.To-Do .add-existing {
+    width: 45%;
+    padding: 0px 15px;
+}
+
+.To-Do .add-new .new,
+.To-Do .add-existing .new {
+    font-size: 13px;
+}
+.To-Do .add-new .icon-new ,
+.To-Do .add-existing .icon-new {
+    font-size: 1.2rem;
+}
 }

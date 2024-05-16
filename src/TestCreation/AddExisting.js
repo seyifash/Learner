@@ -78,7 +78,7 @@ const AddExisting = () => {
                 </div>
             ) : (
                 <div>
-                    <h2>Create Quiz from Pre Existing Question</h2>
+                     <h2 style={{ display: showQuestion ? 'block' : 'none' }}>Create Quiz from Existing Question</h2>
                     {testDuration !== null && !showQuestion ? (
                         <>
                             <h4>Select Question</h4>

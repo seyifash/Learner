@@ -254,3 +254,195 @@ body.dark {
     background: var(--pink);
     cursor: pointer;
 }
+
+@media screen and (max-width: 1040px) { 
+    .main {
+        width: 100%;
+        left: 0px;
+    }
+    
+    .main.active {
+        width: 100%;
+        left: 0px;
+    }
+
+    .CardBox .Cards {
+        padding: 28px;
+    }
+    
+    .CardBox .Cards .Numbers {
+        font-weight: 600;
+        font-size: 1.5rem;
+    }
+    
+    .CardBox .Cards .CardName {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+    
+    .CardBox .Cards .iconBx {
+        font-size: 2.5rem;
+    }
+
+    .pagination {
+        width: 14rem;
+    }
+    .pagination .prev,
+    .pagination .current {
+        padding: 7px 12px;
+        font-size: 12px;
+    }
+    .pagination .key {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+}
+
+@media (max-width: 799px) {
+    .main {
+        width: 100%;
+        left: 0px;
+    }
+    
+    .main.active {
+        width: 100%;
+        left: 0px;
+    }
+
+    .CardBox .Cards {
+        padding: 28px;
+    }
+    
+    .CardBox .Cards .Numbers {
+        font-weight: 600;
+        font-size: 1.5rem;
+    }
+    
+    .CardBox .Cards .CardName {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+    
+    .CardBox .Cards .iconBx {
+        font-size: 2.5rem;
+    }
+
+    .pagination {
+        width: 14rem;
+    }
+    .pagination .prev,
+    .pagination .current {
+        padding: 7px 12px;
+        font-size: 12px;
+    }
+    .pagination .key {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+}
+
+
+@media screen and (max-width: 477px) {
+.main {
+    width: 100%;
+    left: 0px;
+}
+
+.main.active {
+    width: 100%;
+    left: 0px;
+}
+
+.CardBox {
+    grid-gap: 30px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.CardBox .Cards {
+    padding: 28px;
+}
+
+.CardBox .Cards .Numbers {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.CardBox .Cards .CardName {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.CardBox .Cards .iconBx {
+    font-size: 2.5rem;
+}
+
+
+.cardHeader h2 {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.cardHeader .btnd {
+    padding: 5px 7px;
+    font-size: 12px;
+}
+.courses .course {
+    font-size: 14px;
+    padding: 8px 7px;
+}
+
+.Details .recentQuestions .recent-container .recent .quest-num {
+    font-size: 1.2rem;
+    line-height: 2.5rem;
+}
+
+.Details .recentQuestions .recent-container .recent span {
+    font-size: 14px;
+}
+
+.Details .recentQuestions .recent-container .recent img {
+    width: 300px;
+    border-radius: 6px;
+    margin: 20px 0px;
+}
+
+.Details .recentQuestions .recent-container .recent p {
+    font-weight: 600;
+    line-height: 23px;
+    font-size: 14px;
+    margin: 8px 0px;
+}
+
+.Details .recentQuestions .recent-container .recent .checks {
+    font-weight: 600;
+    font-size: 14px;
+    margin-left: 40px;
+}
+
+.Details .recentQuestions .recent-container .recent img {
+    width: 95%;
+}
+
+.Details .recentQuestions .recent-container .recent .checks:before {
+    width: 16px;
+    height: 16px;
+    top: 3px;
+    left: -40px;
+}
+.pagination {
+    width: 13rem;
+}
+.pagination .prev,
+.pagination .current {
+    padding: 5px 10px;
+    font-size: 10px;
+    border-radius: 5px;
+}
+.pagination .key {
+    padding: 7px 10px;
+    font-size: 10px;
+}
+}
