@@ -11,15 +11,16 @@
     padding-top: 40px;
   }
   .signIn h1 {
-    width: 400px;
+    width: 40%;
     font-size: 6rem;
     font-weight: 900;
     text-align: start;
     line-height: 5rem;
     color: #fbd3d3;
   }
+
   .signIn h3 {
-    width: 400px;
+    width: 40%;
     font-size: 1.5rem;
     font-weight: 600;
     text-align: start;
@@ -28,7 +29,7 @@
 
 .signIn .section-signin,.signIn .section-success {
         padding: 15px 20px;
-        width: 400px;
+        width: 40%;
         background-color: rgba(255, 255, 255, 0.3);
        /* min-height: 350px;*/
 }
@@ -57,7 +58,7 @@
 }
 
 .section-signin h1 {
-    font-size: 2rem;
+    font-size: 3rem;
     color: #fbd3d3;
 }
 
@@ -150,3 +151,48 @@
   .section-signin .forgotPwd a {
     color: var(--pink)
   }
+
+  @media screen and (max-width: 799px) {
+    .signIn h1 {
+        width: 60%;
+        font-size: 4rem;
+        line-height: 5rem;
+    }
+    .signIn h3 {
+        width: 60%;
+        font-size: 1.2rem;
+    }
+    .signIn .section-signin, .signIn .section-success {
+        width: 60%;
+    }
+    
+    .signIn .section-signin h1 {
+        font-size: 3.2rem;
+    }
+    .section-signin button {
+        height: 45px;
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 477px) {
+    .signIn h1 {
+        width: 80%;
+        font-size: 4rem;
+        line-height: 5rem;
+    }
+    .signIn h3 {
+        width: 80%;
+        font-size: 1.2rem;
+    }
+    .signIn .section-signin, .signIn .section-success {
+        width: 80%;
+    }
+    .signIn .section-signin h1 {
+        font-size: 3rem;
+    }
+    .section-signin button {
+        height: 45px;
+        font-size: 1rem;
+    }
+}

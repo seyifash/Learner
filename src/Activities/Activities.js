@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import "../Dashboard/dashboard.css";
 import NavBar from '../Dashboard/NavBar';
@@ -12,51 +12,50 @@ const Activities = () => {
     const toggles = useSelector(state => state.toggle);
     const userId = useSelector(state => state.auth.userId);
     const { toggle } = toggles;
-    const [chartData, setChartData] = useState([]);
     const [userData, setUserData] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetch = async () => {
             try {
                 const response = await axios.get(`http://127.0.0.1:5000/api/learners/v1/activities_total/${userId}`);
                 console.log(response.data);
-                setChartData(response.data);
+                const datas = response.data;
+                if (datas.length > 0) {
+                    setUserData({
+                        labels: datas.map((data) => `${data.month} ${data.year}`),
+                        datasets: [
+                            {
+                                label: "Total Quizzes",
+                                data: datas.map((data) => data.totalQuizzes),
+                                backgroundColor: ["#444"],
+                                barThickness: 14,
+                            },
+                            {
+                                label: "Total Questions",
+                                data: datas.map((data) => data.totalQuestions),
+                                backgroundColor: ["#fbd3d3"],
+                                barThickness: 14,
+                            },
+                            {
+                                label: "Total Students",
+                                data: datas.map((data) => data.totalStudents),
+                                backgroundColor: ['#663399'],
+                                barThickness: 14,
+                            }
+                        ]
+                    });
+                }
+                setLoading(false);
             } catch (error) {
                 console.log(error.message);
+                setLoading(false);
             }
         };
         fetch();
     }, [userId]);
 
-    useEffect(() => {
-        if (chartData.length > 0) {
-            setUserData({
-                labels: chartData.map((data) => `${data.month} ${data.year}`),
-                datasets: [
-                    {
-                        label: "Total Quizzes",
-                        data: chartData.map((data) => data.totalQuizzes),
-                        backgroundColor: ["#444"],
-                        barThickness: 14,
-                    },
-                    {
-                        label: "Total Questions",
-                        data: chartData.map((data) => data.totalQuestions),
-                        backgroundColor: ["#fbd3d3"],
-                        barThickness: 14,
-                    },
-                    {
-                        label: "Total Students",
-                        data: chartData.map((data) => data.totalStudents),
-                        backgroundColor: ['#663399'],
-                        barThickness: 14,
-                    }
-                ]
-            });
-        }
-    }, [chartData]);
-
-    const getChartOptions = (fontSize, barThickness) => ({
+    const getChartOptions = useCallback((fontSize, barThickness) => ({
         responsive: true,
         maintainAspectRatio: false,
         scales: {
@@ -90,7 +89,7 @@ const Activities = () => {
                 right: barThickness / 2,
             }
         }
-    });
+    }), []);
 
     const [chartOptions, setChartOptions] = useState(getChartOptions(12, 14));
 
@@ -109,23 +108,22 @@ const Activities = () => {
                 barThickness = 14;
             }
             setChartOptions(getChartOptions(fontSize, barThickness));
-            if (userData) {
-                setUserData(prevData => ({
-                    ...prevData,
-                    datasets: prevData.datasets.map(dataset => ({
-                        ...dataset,
-                        barThickness: barThickness
-                    }))
-                }));
-            }
+            setUserData(prevData => prevData && ({
+                ...prevData,
+                datasets: prevData.datasets.map(dataset => ({
+                    ...dataset,
+                    barThickness: barThickness
+                }))
+            }));
         };
+
         window.addEventListener('resize', handleResize);
         handleResize();
 
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-    }, [userData]);
+    }, [getChartOptions]);
 
     return (
         <div>
@@ -133,8 +131,10 @@ const Activities = () => {
             <div className={`main ${toggle ? 'active' : ''}`}>
                 <TopBar opt={false} />
                 <div className="act">
-                    {userData === null ? (
-                         <h2>No Activities yet</h2>
+                    {loading ? (
+                        <h2>Loading...</h2>
+                    ) : userData === null ? (
+                        <h2>No Activities yet</h2>
                     ) : (
                         <Bar data={userData} options={chartOptions} />
                     )}

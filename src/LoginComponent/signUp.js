@@ -126,7 +126,7 @@ const SignUp = () => {
                     <p>
                         Already registered?<br />
                         <span className="line">
-                            <Link href="/sign-in">Sign In</Link>
+                            <Link to="/sign-in">Sign In</Link>
                         </span>
                     </p>
                 </section>

@@ -19,7 +19,7 @@
     padding-top: 40px;
   }
   .signup h1 {
-    width: 400px;
+    width: 40%;
     font-size: 6rem;
     font-weight: 900;
     text-align: start;
@@ -27,7 +27,7 @@
     color: #fbd3d3;
   }
   .signup h3 {
-    width: 400px;
+    width: 40%;
     font-size: 1.5rem;
     font-weight: 600;
     text-align: start;
@@ -36,7 +36,7 @@
 
 .signup .section-signUp,.signup .section-success {
         padding: 15px 20px;
-        width: 400px;
+        width: 40%;
         background-color: rgba(255, 255, 255, 0.3);
        /* min-height: 350px;*/
 }
@@ -145,4 +145,47 @@
 
   .section-signUp p .line a{
     color: #fbd3d3;
+  }
+  @media screen and (max-width: 799px) {
+    .signup h1 {
+        width: 70%;
+        font-size: 4rem;
+    }
+    .signup h3 {
+        width: 70%;
+        font-size: 1.2rem;
+    }
+
+    .signup .section-signUp, .signup .section-success {
+        width: 70%;
+    }
+    .signup .section-signUp h1 {
+        font-size: 3rem;
+    }
+    .section-signUp button {
+        height: 45px;
+        font-size: 1.1rem;
+    }
+  }
+
+  @media screen and (max-width: 477px) {
+    .signup h1 {
+        width: 80%;
+        font-size: 4rem;
+    }
+    .signup h3 {
+        width: 80%;
+        font-size: 1rem;
+    }
+
+    .signup .section-signUp, .signup .section-success {
+        width: 80%;
+    }
+    .signup .section-signUp h1 {
+        font-size: 3rem;
+    }
+    .section-signUp button {
+        height: 45px;
+        font-size: 1rem;
+    }
   }

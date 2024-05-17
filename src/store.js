@@ -13,7 +13,7 @@ const store = configureStore({
         toggle: ToggleSlice.reducer,
         test: TestSlice.reducer,
         created: createdSlice.reducer,
-        setting: settingSlice.reducer
+        setting: settingSlice.reducer,
     }
 })
 export default store;
