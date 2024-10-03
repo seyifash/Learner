@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const DATA_URI = 'http://127.0.0.1:5000/api/learners/v1/teacher-details/';
-const PWD_URI = 'http://127.0.0.1:5000/api/learners/v1/update-password/';
-const NAME_URI = 'http://127.0.0.1:5000/api/learners/v1/update-name/';
-const IMAGE_URI = 'http://127.0.0.1:5000/api/learners/v1/save-teacherimage/';
+const DATA_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/teacher-details/';
+const PWD_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/update-password/';
+const NAME_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/update-name/';
+const IMAGE_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/save-teacherimage/';
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9\s-_]{1,38}[a-zA-Z0-9]$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;

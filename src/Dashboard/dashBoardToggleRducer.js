@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const QUESTION_URI = 'http://127.0.0.1:5000/api/learners/v1/all-questions';
-const STUDENT_COUNT_URI = 'http://127.0.0.1:5000/api/learners/v1/get-students';
+const QUESTION_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/all-questions';
+const STUDENT_COUNT_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/get-students';
 
 const initialState = {
     toggle: false,

@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const DETAILS_URI = 'http://127.0.0.1:5000/api/learners/v1/quiz-details/';
-const QUIZ_URI = 'http://127.0.0.1:5000/api/learners/v1/teacher-quiz/';
+const DETAILS_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/quiz-details/';
+const QUIZ_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/teacher-quiz/';
 
 
 const initialState = {

@@ -71,10 +71,10 @@ const AddExisting = () => {
                     <h2>Copy Test Link For Students</h2>
                     <div className="link">
                         <span>api/learners/v1/take-quiz/{quizId}</span>
-                        <span><i class='bx bx-copy' onClick={() => copyToClipboard(`api/learners/v1/take-quiz/${quizId}`)}></i></span>
+                        <span><i class='bx bx-copy' onClick={() => copyToClipboard(`https://Osei.pythonanywhere.com/api/learners/v1/take-quiz/${quizId}`)}></i></span>
                     </div>
                     <span className="pass"><strong>Passcode: {code} </strong><i class='bx bx-copy' onClick={() => copyToClipboard(`${code}`)}></i></span>
-                    <Link to={`http://127.0.0.1:5000/api/learners/v1/${filename}`} className="passes">Click Here Download Questions docx</Link>
+                    <Link to={`https://Osei.pythonanywhere.com/api/learners/v1/${filename}`} className="passes">Click Here Download Questions docx</Link>
                 </div>
             ) : (
                 <div>
@@ -92,7 +92,7 @@ const AddExisting = () => {
                                     <div className="Each-question-details">
                                         <span className="subject"><strong>Subject: </strong>{items.subject}</span>
                                         <span className="header"><strong>Header: </strong>{items.header}</span>
-                                        {items.image && <img src={`http://localhost:5000/api/learners/v1/${items.image}`} alt={`img-${items.id}`} />}
+                                        {items.image && <img src={`https://Osei.pythonanywhere.com/api/learners/v1/${items.image}`} alt={`img-${items.id}`} />}
                                         <p>{items.body}</p>
                                         <div className="options-div">
                                             <span ><strong>A: </strong> {items.options[0]}</span>

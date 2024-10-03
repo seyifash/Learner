@@ -18,7 +18,7 @@ const Activities = () => {
     useEffect(() => {
         const fetch = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:5000/api/learners/v1/activities_total/${userId}`);
+                const response = await axios.get(`https://Osei.pythonanywhere.com/api/learners/v1/activities_total/${userId}`);
                 console.log(response.data);
                 const datas = response.data;
                 if (datas.length > 0) {

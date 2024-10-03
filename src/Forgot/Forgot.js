@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './forgot.css'
-import axios from 'axios';
 
 const Forgot = () => {
     const [email, setEmail] = useState('');

@@ -17,7 +17,7 @@ const Students = () => {
     useEffect(() => {
         const showStudents = async () => {
           try {
-          const response = await fetch(`http://127.0.0.1:5000/api/learners/v1/get-students/${userId}`);
+          const response = await fetch(`https://Osei.pythonanywhere.com/api/learners/v1/get-students/${userId}`);
           if(!response.ok) {
             console.log('failed to fetch student');
           }

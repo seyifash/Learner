@@ -83,17 +83,17 @@ const Created = () => {
                                 <span >Quiz {index + 1} </span>
                                     <div className={`popuptext ${showPopup[key] ? 'show' : ''}`}>
                                         <div className="pop">
-                                            <Link className="link-Quiz" to={`http://127.0.0.1:5000/api/learners/v1/${filename}`}>
+                                            <Link className="link-Quiz" to={`https://Osei.pythonanywhere.com/api/learners/v1/${filename}`}>
                                                 <i class='bx bxs-file-doc'></i> Download Quiz
                                             </Link>
                                             <span className="link-Quiz"  onClick={(e) => { e.stopPropagation(); handleViews(key) }}>
                                                 <i class='bx bxs-edit-alt'></i>View Quiz
                                             </span>
-                                            <Link className="link-Quiz"  to={`http://127.0.0.1:5000/api/learners/v1/${score}`}>
+                                            <Link className="link-Quiz"  to={`https://Osei.pythonanywhere.com/api/learners/v1/${score}`}>
                                                 <i class='bx bxs-door-open'></i> View Score In Excel
                                             </Link>
                                             <span className="link-Quiz">
-                                                <i className='bx bx-copy' onClick={() => copyToClipboard(`api/learners/v1/take-quiz/${selectedKey}`)}></i> Copy Link
+                                                <i className='bx bx-copy' onClick={() => copyToClipboard(`https://Osei.pythonanywhere.com/api/learners/v1/take-quiz/${selectedKey}`)}></i> Copy Link
                                             </span>
                                         </div>
                                     </div>
@@ -105,7 +105,7 @@ const Created = () => {
                                             <div className="real" key={index}>
                                                 <span className="que">Question {index  + 1}</span>
                                                 <span className="head-er"><strong>Header: </strong>{items.header}</span>
-                                                {items.image && <img src={`http://localhost:5000/api/learners/v1/${items.image}`} alt={`img-${items.id}`} />}
+                                                {items.image && <img src={`https://Osei.pythonanywhere.com/api/learners/v1/${items.image}`} alt={`img-${items.id}`} />}
                                                 <p>{items.body}</p>
                                             </div>
                                         ))}

@@ -23,7 +23,7 @@ const TopBar = ({opt}) => {
             <div className="user">
                 {teacherImage !== null && teacherImage ? 
                     (
-                    <img src={`http://localhost:5000/api/learners/v1/${teacherImage}`} alt="profile-pics" />) 
+                    <img src={`https://Osei.pythonanywhere.com/api/learners/v1/${teacherImage}`} alt="profile-pics" />) 
                     :
                     (
                     console.log('i am in heere'), <i className='bx bxs-user-circle'></i>)
@@ -36,7 +36,7 @@ const TopBar = ({opt}) => {
                 <div className="user">
                     {teacherImage !== null && teacherImage ? 
                         (
-                        <img src={`http://localhost:5000/api/learners/v1/${teacherImage}`} alt="profile-pics" />) 
+                        <img src={`https://Osei.pythonanywhere.com/api/learners/v1/${teacherImage}`} alt="profile-pics" />) 
                         :
                         (<i className='bx bxs-user-circle'></i>)
                     }

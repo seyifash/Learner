@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const QUESTION_URI = 'http://127.0.0.1:5000/api/learners/v1/all-questions';
-const CREATE_NEW_URI = 'http://127.0.0.1:5000/api/learners/v1/create-new/';
-const CREATE_EXISTING_URI = 'http://127.0.0.1:5000/api/learners/v1/create-existing/';
+const QUESTION_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/all-questions';
+const CREATE_NEW_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/create-new/';
+const CREATE_EXISTING_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/create-existing/';
 
 
 const initialState = {

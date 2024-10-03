@@ -147,9 +147,9 @@ const Settings = () => {
                     )}
                     <div className="picsEdit">
                         {teacherImage !== null ? (
-                            <img src={`http://localhost:5000/api/learners/v1/${teacherImage}`} alt="profile-pics" />
+                            <img src={`https://Osei.pythonanywhere.com/api/learners/v1/${teacherImage}`} alt="profile-pics" />
                             ) : updatedImage !== null ? (
-                            <img src={`http://localhost:5000/api/learners/v1/${updatedImage}`} alt="profile-pics" />
+                            <img src={`https://Osei.pythonanywhere.com/api/learners/v1/${updatedImage}`} alt="profile-pics" />
                             ) : (
                             <i className='bx bxs-user-circle'></i>
                         )}

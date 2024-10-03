@@ -21,7 +21,7 @@ const Home = () => {
             <div className="content1">
                 <img src={pics} alt="ad-pics" />
                 <div className="btn">
-                <button><Link to="/sign-up">Get started  &rarr;</Link></button>
+                <button><Link to="/sign-up" >Get started  &rarr;</Link></button>
                 </div>
             </div>
             <div className="contentleft">

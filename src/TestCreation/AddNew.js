@@ -38,10 +38,10 @@ const AddNew = () => {
                     <h2>Copy Test Link For Students</h2>
                     <div className="link">
                         <span>api/learners/v1/take-quiz/{quizId}</span>
-                        <span><i class='bx bx-copy' onClick={() => copyToClipboard(`api/learners/v1/take-quiz/${quizId}`)}></i></span>
+                        <span><i class='bx bx-copy' onClick={() => copyToClipboard(`https://Osei.pythonanywhere.com/api/learners/v1/take-quiz/${quizId}`)}></i></span>
                     </div>
                     <span className="pass">PassCode: {code} <i class='bx bx-copy' onClick={() => copyToClipboard(`${code}`)}></i></span>
-                    <Link to={`http://127.0.0.1:5000/api/learners/v1/${filename}`} className="passes">Download Questions docx</Link>
+                    <Link to={`https://Osei.pythonanywhere.com/api/learners/v1/${filename}`} className="passes">Download Questions docx</Link>
                 </div>
             ) : (
                 <div>

@@ -1,7 +1,7 @@
 export default function getQuizByCourse(id) {
     let quiz;
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', `http://127.0.0.1:5000/api/learners/v1/all-questions/${id}`, false);
+    xhr.open('GET', `https://Osei.pythonanywhere.com/api/learners/v1/all-questions/${id}`, false);
     xhr.send();
 
     if (xhr.status === 200) {

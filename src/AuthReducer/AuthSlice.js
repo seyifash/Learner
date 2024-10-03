@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from "axios";
 
-const POST_URI = 'http://127.0.0.1:5000/api/learners/v1/sign-up';
-const GET_USER_URI = 'http://127.0.0.1:5000/api/learners/v1/login';
+const POST_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/sign-up';
+const GET_USER_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/login';
 
 const storedUserId = localStorage.getItem('userId');
 const storedTeacherImage = localStorage.getItem('teacherImage');
