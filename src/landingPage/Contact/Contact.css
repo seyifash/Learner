@@ -185,7 +185,7 @@
         margin-bottom: 20px;
     }
     #contact-details .contact .Phone-number h2 {
-        font-size: 15px;
+        font-size: 20px;
     }
     #contact-details .contact .address h2 {
         font-size: 20px;
@@ -195,6 +195,9 @@
     }
     #form-details form {
         padding: 10px 10px;
+    }
+    #form-details form h2 {
+        font-size: 20px;
     }
     #form-details {
         flex:0;
