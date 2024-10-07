@@ -68,6 +68,7 @@
 .choosen .duration form {
     display: flex;
     flex-direction: column;
+    min-height: 70vh;
 }
 .choosen .duration form input,
 .choosen .duration form select {
