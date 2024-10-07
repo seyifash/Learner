@@ -91,6 +91,7 @@
 }
 .choosen2 .Each-question  .options-div{
     display: flex;
+    flex-direction: column;
     width: 100%;
 }
 
