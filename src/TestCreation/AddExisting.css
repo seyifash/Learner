@@ -319,4 +319,14 @@
         border: none;
         margin-left: 0px;
     }
+    .choosen2 .quiz-id-section .link {
+        width: 100%;
+    }
+    .choosen2 .quiz-id-section .pass {
+        width: 90%;
+    }
+    
+    .choosen2 .quiz-id-section .passes {
+        width: 90%;
+    }
 }
