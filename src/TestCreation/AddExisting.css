@@ -286,6 +286,7 @@
 
     .duration form  .new-input {
         font-size: 13px;
+        box-shadow: 0 7px 25px var(--boxshadow);
     }
     .duration form .submit-Btn {
         width: 110px;
