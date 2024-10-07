@@ -259,4 +259,17 @@
         font-size: 13px;
         padding: 10px 0px;
     }
+    .choosen .quiz-id-section .link {
+        width: 100%;
+    }
+    .choosen .quiz-id-section .pass {
+        display: flex;
+        width: 90%;
+
+    }
+    
+    .choosen .quiz-id-section .passes {
+        display: flex;
+        width: 90%;
+    } 
 }
