@@ -136,7 +136,8 @@
     line-height:55px;
     text-align: start;
     white-space: nowrap;
-    padding-left: 10px;    
+    padding-left: 10px; 
+    cursor: pointer;   
 }
 
 
