@@ -246,6 +246,7 @@
         height: 35px;
         font-size: 13px;
         margin-bottom: 10px;
+        box-shadow: 0 7px 0px var(--boxshadow);
     }
     .choosen .duration .label, 
     .choosen .question-details .label, 
