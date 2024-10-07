@@ -26,7 +26,7 @@ const TopBar = ({opt}) => {
                     <img src={`https://Osei.pythonanywhere.com/api/learners/v1/${teacherImage}`} alt="profile-pics" />) 
                     :
                     (
-                    console.log('i am in heere'), <i className='bx bxs-user-circle'></i>)
+                    console.log('i am in here'), <i className='bx bxs-user-circle'></i>)
                 }
             </div>
         </div>
