@@ -225,7 +225,7 @@
     .body1 .container .contentleft {
         position: absolute;
         left: 15px;
-        top: 55px;
+        top: 80px;
         width: 150px;
     }
     .body1 .container .contentleft h2 {
@@ -245,7 +245,7 @@
     .body1 .container .contentright {
         position: absolute;
         right: 15px;
-        top: 55px;
+        top: 80px;
         width: 150px;
         text-align: right;
     }
