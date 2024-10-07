@@ -23,6 +23,7 @@
     --tran-05: all 0.5s ease;
     --white2: #fff;
     --white3: #fff;
+    --white5: #fff;
     --dark: #1a1a1a;
     --purple3: rebeccapurple;
     --grey: #333;
@@ -52,6 +53,7 @@ body.dark {
     --beige: #444;
     --white: #222;
     --white3: #fff;
+    --white5: rebeccapurple;
     --purple: #333;
     --primary-color-light: #3A3B3C;
     --purple2: #fff;
