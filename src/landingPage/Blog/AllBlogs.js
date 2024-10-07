@@ -92,7 +92,7 @@ const blogs = {
         }, 
         {
         title: 'Introduction to REST API',
-        image: require("../../assets/tech3.jpg"),
+        image: require("../../assets/blog1.jpg"),
         content: [
             {
                 title: 'Introduction to REST API',
