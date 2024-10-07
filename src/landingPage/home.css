@@ -189,9 +189,11 @@
     .body1 .span1 {
         padding: 7px 15px;
         font-size: 10px;
+        margin-top: 20px;
     }
     .body1 h1 {
         font-size: 30px;
+        margin-top: 20px;
     }
 
     .body1 .span2 {
@@ -590,8 +592,12 @@
         padding: 60px 20px;
     }
 
+    body1 .span1 {
+
+    }
+
     .body1 .container {
-        height: 500px;
+        height: 450px;
 
     }
     .body3 .part1 span {
