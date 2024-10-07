@@ -993,10 +993,11 @@
         top: -0px;
         left: 18px;
     }
+    
     .body .part3 .content {
         margin-left: 70px;
         flex: 0 ;
-        width: 50%;
+        width: 70%;
     }
     .body .part3 .content h1 {
         width: 150px;
@@ -1017,6 +1018,9 @@
    
     .body .part3 .pics {
         flex: 0;
+    }
+    .body5 .part2 h1 {
+       font-size: 20px;
     }
 }
 
