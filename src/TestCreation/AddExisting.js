@@ -95,7 +95,7 @@ const AddExisting = () => {
                                         {items.image && <img src={`https://Osei.pythonanywhere.com/api/learners/v1/${items.image}`} alt={`img-${items.id}`} />}
                                         <p>{items.body}</p>
                                         <div className="options-div">
-                                            <span ><strong>A: </strong> {items.options[0]}</span>
+                                            <span><strong>A: </strong> {items.options[0]}</span>
                                             <span><strong>B: </strong> {items.options[1]}</span>
                                             <span><strong>C: </strong> {items.options[2]}</span>
                                             <span><strong>D: </strong> {items.options[3]}</span>

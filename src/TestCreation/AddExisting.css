@@ -102,9 +102,9 @@
     color: var(--black1);
 }
 
-.choosen2 .Each-question  .options-div span:nth-child(1) {
+/*.choosen2 .Each-question  .options-div span:nth-child(1) {
     padding-left: 0px;
-}
+}*/
 .choosen2 .Each-question  .options-div span strong {
     padding: 0px 10px;
     color: var(--purple3);
