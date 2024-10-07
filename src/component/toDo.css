@@ -11,10 +11,10 @@
     height: 120px;
     display: flex;
     justify-content: space-between;
-    border-radius: 10px;
+    border-radius: 20px;
     box-shadow: 0 7px 25px var(--boxshadow);
     align-items: center;
-    padding: 0px 40px;
+    padding: 0px 20px;
     margin-bottom: 20px;
 }
 .To-Do .add-new:hover,
