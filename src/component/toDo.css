@@ -112,7 +112,7 @@
 
 .To-Do .add-new .new,
 .To-Do .add-existing .new {
-    /*font-size: 13px;*/
+    font-size: 13px;
 }
 .To-Do .add-new .icon-new ,
 .To-Do .add-existing .icon-new {
