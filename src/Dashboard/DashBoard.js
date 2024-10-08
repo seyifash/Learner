@@ -19,6 +19,7 @@ const DashBoard = () => {
    } = toggles;
   const dispatch = useDispatch()
   const subjectsList = uniqueSubjects(questions);
+  console.log(subjectsList)
 
   useEffect(() => {
     dispatch(fetchQuestion());
