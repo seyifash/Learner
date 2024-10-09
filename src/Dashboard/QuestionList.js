@@ -11,8 +11,8 @@ const QuestionList = ({ currentQuestions, currentPage, itemsPerPage }) => {
                     <div className="recent" key={items.id}>
                         {/* Render question details */}
                         <span className="quest-num">Question {questionNumber}</span>
-                        <span><strong>Subject: </strong>{items.subject}</span>
-                        <span><strong>Header: </strong>{items.header}</span>
+                        <span style={{textTransform: 'capitalize'}}><strong>Subject: </strong><span style={{textTransform: 'capitalize'}}>{items.subject}</span></span>
+                        <span><strong>Header: </strong><span style={{textTransform: 'capitalize'}}>{items.header}</span></span>
                         {items.image && <img src={`https://Osei.pythonanywhere.com/api/learners/v1/${items.image}`} alt={`img-${items.id}`} />}
                         <p>{items.body}</p>
                         {items.options.map((option, spanIndex) => (

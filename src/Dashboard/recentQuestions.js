@@ -11,8 +11,8 @@ const RecentQuestions = () => {
             {Array.isArray(questions) && questions.length > 0 && questions.slice(0, 5).map((items, questionIndex) => (
                 <div className="recent" key={items.id}>
                     <span className="quest-num">Question {questionIndex + 1}</span>
-                    <span><strong>Subject: </strong>{items.subject}</span>
-                    <span><strong>Header: </strong>{items.header}</span>
+                    <span style={{textTransform: 'capitalize'}}><strong>Subject: </strong><span style={{textTransform: 'capitalize'}}>{items.subject}</span></span>
+                    <span><strong>Header: </strong><span style={{textTransform: 'capitalize'}}>{items.header}</span></span>
                     <p>{items.body}</p>
                 </div>
             ))}
