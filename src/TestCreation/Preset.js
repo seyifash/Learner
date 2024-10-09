@@ -21,7 +21,7 @@ const Preset = () => {
         if (name === 'subject') {
             if (newValue === 'english' || newValue === 'English' || newValue === 'english language') {
                 newValue = "English Language";
-            } else if (newValue === 'Maths' || newValue === 'maths') {
+            } else if (newValue === 'Maths' || newValue === 'maths' || newValue === 'math') {
                 newValue = 'Mathematics';
             }
         }
