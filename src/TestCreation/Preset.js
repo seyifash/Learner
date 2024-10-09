@@ -17,19 +17,22 @@ const Preset = () => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        let newValue = value
+        let newValue = value;
+    
         if (name === 'subject') {
             if (newValue === 'english' || newValue === 'English' || newValue === 'english language') {
                 newValue = "English Language";
-            } else if (newValue === 'Maths' || newValue === 'maths' || newValue === 'math') {
+            } else if (newValue === 'Maths' || newValue === 'maths') {
                 newValue = 'Mathematics';
             }
         }
+    
         setPreset(prevPreset => ({
             ...prevPreset,
-            [name]: name === 'numQuestions' ? parseInt(newValue) : value
+            [name]: name === 'numQuestions' ? parseInt(newValue) : newValue
         }));
     };
+    
 
 
     const setDetailsList = (event) => {
