@@ -52,6 +52,7 @@ const Preset = () => {
                 name="subject"
                 value={preset.subject}
                 onChange={handleInputChange}
+                placeholder="Enter full subject name"
             />
             <label className="label">Test Duration</label>
             <select

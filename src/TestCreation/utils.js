@@ -6,9 +6,3 @@ export default function getQuestionsBySubject(questions, subject=null) {
         return questions.filter(question => question.subject === subject);
     }
 }
-export default function checkSubject(questions, subject){
-    const subjectExist = questions.some((question) => 
-        question.subject.toLowerCase() === subject.toLowercase())
-
-    return subjectExist
-}
