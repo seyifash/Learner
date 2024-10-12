@@ -4,8 +4,8 @@ import axios from "axios";
 const POST_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/sign-up';
 const GET_USER_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/login';
 
-const storedUserId = localStorage.getItem('userId');
-const storedTeacherImage = localStorage.getItem('teacherImage');
+const storedUserId = sessionStorage.getItem('userId');
+const storedTeacherImage = sessionStorage.getItem('teacherImage');
 
 const initialState = {
     loading: false,
@@ -41,8 +41,8 @@ export const getUser = createAsyncThunk('userId/getUser', async (formData) => {
 
         const { teacherId, isValid, teacherImage } = response.data;
         if (isValid) {
-            localStorage.setItem('userId', teacherId)
-            localStorage.setItem('teacherImage', teacherImage);
+            sessionStorage.setItem('userId', teacherId)
+            sessionStorage.setItem('teacherImage', teacherImage);
             return { teacherId, teacherImage};
         } else {
             throw new Error("User does not exist");
@@ -62,8 +62,9 @@ const AuthSlice = createSlice({
         }
         ,
         logOut(state) {
-                localStorage.removeItem('userId')
-                localStorage.setItem('logoutEvent', Date.now());
+                sessionStorage.removeItem('userId')
+                sessionStorage.removeItem('teacherImage')
+                sessionStorage.setItem('logoutEvent', Date.now());
                 state.isLoggedIn =  false
                 state.userId = null
                 state.teacherImage = null;
@@ -73,7 +74,7 @@ const AuthSlice = createSlice({
         },
         updateImage(state, action) {
             state.teacherImage = action.payload
-            localStorage.setItem('teacherImage', action.payload);
+            sessionStorage.setItem('teacherImage', action.payload);
         }
 
     },
