@@ -7,6 +7,7 @@ import "../Dashboard/dashboard.css";
 import ToDo from '../component/TodoBox';
 import AddNew from './AddNew';
 import AddExisting from './AddExisting';
+import useAxiosPrivate from '../Api/useAxiosPrivate';
 
 
 const TestCreation = () => {
@@ -15,11 +16,12 @@ const TestCreation = () => {
   const questions = useSelector(state => state.test.questionsDb)
   const test = useSelector(state => state.test);
     const { createNew } = test;
+    const axiosPrivate = useAxiosPrivate()
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-      dispatch(fetchTestQuestion())
+      dispatch(fetchTestQuestion(axiosPrivate))
   }, [dispatch])
   
 

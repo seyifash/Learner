@@ -10,6 +10,8 @@ import './dashboard.css';
 import QuestionList from './QuestionList';
 import Pagination from './Pagination';
 import RecentQuestions from './recentQuestions';
+import useAxiosPrivate from '../Api/useAxiosPrivate';
+
 
 
 
@@ -20,13 +22,17 @@ const DashBoard = () => {
   const dispatch = useDispatch()
   const subjectsList = uniqueSubjects(questions);
   console.log(subjectsList)
+  const axiosPrivate = useAxiosPrivate();
+  console.log('Axios instance from useAxiosPrivate:', axiosPrivate);
 
   useEffect(() => {
-    dispatch(fetchQuestion());
+    console.log('before dispatch')
+    dispatch(fetchQuestion(axiosPrivate));
+    console.log('after dispatch')
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchStudentCount());
+    dispatch(fetchStudentCount(axiosPrivate));
   }, [dispatch]);
 
   const totalPages = Math.ceil(questions.length / itemsPerPage);

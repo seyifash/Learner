@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { refreshAccessToken }  from '../Api/useRefreshTokenHook';
 
-const DATA_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/teacher-details/';
-const PWD_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/update-password/';
-const NAME_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/update-name/';
-const IMAGE_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/save-teacherimage/';
+const DATA_URI = 'api/learners/v1/teacher-details/';
+const PWD_URI = 'api/learners/v1/update-password/';
+const NAME_URI = 'api/learners/v1/update-name/';
+const IMAGE_URI = 'api/learners/v1/save-teacherimage/';
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9\s-_]{1,38}[a-zA-Z0-9]$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -39,27 +40,29 @@ const initialState = {
   };
 
 export const fetchData = createAsyncThunk(
-    'setting/fetchData',
-    async (userId) => {
-      try {
-        const response = await axios.get(DATA_URI + userId);
-        const data = response.data;
-        return data;
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error;
-      }
-    }
-);
+      'setting/fetchData',
+      async ({userId, axiosPrivate}, { rejectWithValue }) => {
 
+        
+        try {
+          const response = await axiosPrivate.get(DATA_URI + userId);
+          return response.data;
+        } catch (error) {
+          console.log('Error fetching data:', error.message);
+          return rejectWithValue(error.message); 
+        }
+      }
+  );
+  
 export const submitPwd = createAsyncThunk(
     'setting/submitPwd',
-    async ({ userId, oldPwd, pwd }) => {
+    async ({ userId, oldPwd, pwd, axiosPrivate }, {rejectWithValue}) => {
       let error = '';
       let success = '';
-  
+      
+
       try {
-        const response = await axios.put(PWD_URI + userId, {
+        const response = await axiosPrivate.put(PWD_URI + userId, {
           initialPassword: oldPwd,
           newPassword: pwd,
         });
@@ -79,77 +82,66 @@ export const submitPwd = createAsyncThunk(
           }
         }
       } catch (err) {
-        console.error('Error:', err);
+       
         error = 'No Server Response';
         return error 
       }
     }
   );
 
-export const saveUpdateImage = createAsyncThunk(
+  export const saveUpdateImage = createAsyncThunk(
     'setting/saveUpdateImage',
-    async ({ userId, image }) => {
-      let imagePath = null;
-      let success = '';
-      let errors = '';
-      const formData = new FormData();
-      formData.append('image', image);
-  
-      try {
-        const response = await axios.put(IMAGE_URI + userId, formData);
-  
-        if (response.status === 200) {
-          const data = response.data;
-          imagePath = data.teacherImage;
-          success = data.status_code;
-        } else {
-          if (response.status === 400) {
-            const errorData = response.data;
-            const { description } = errorData;
-            errors = description;
-          } else {
-            errors = 'Server Error';
-          }
+    async ({ userId, image, axiosPrivate }, { rejectWithValue }) => {
+        let imagePath = null;
+        let success = '';
+        let errors = '';
+        const formData = new FormData();
+        formData.append('image', image);
+
+        console.log('Request URL:', IMAGE_URI + userId);
+        console.log('Image to upload:', image);
+
+        try {
+            const response = await axiosPrivate.put(IMAGE_URI + userId, formData);
+
+            if (response.status === 200) {
+                const data = response.data;
+                imagePath = data.teacherImage;
+                success = data.status_code;
+                return { imagePath, success };
+            } else {
+                const errorData = response.data;
+                errors = errorData.description || 'Server Error';
+                return rejectWithValue(errors);
+            }
+        } catch (err) {
+            console.error('Error:', err);
+            return rejectWithValue(err.response?.data?.description || 'No Server Response');
         }
-      } catch (err) {
-        console.error('Error:', err);
-        errors = 'No Server Response';
-      }
-  
-      return { imagePath, success, errors };
     }
-  );
+);
+
  
-export const submitName = createAsyncThunk(
+  export const submitName = createAsyncThunk(
     'setting/submitName',
-    async ({ userId, newName }) => {
-      let error = '';
+    async ({ userId, newName, axiosPrivate }, { rejectWithValue }) => {
       let first = '';
       let last = '';
-  
       try {
-        const response = await axios.put(NAME_URI + userId, {
-          newName: newName,
-        });
+        console.log("i am good")
+        const response = await axiosPrivate.put(NAME_URI + userId, { newName });
   
         if (response.status === 200) {
-          const data = response.data;
-          console.log(data);
           [last, first] = newName.split(' ');
-          return {'last': last, 'first': first}
+          return { last, first };
+        } else if (response.status === 404) {
+          return rejectWithValue('UserName Taken');
         } else {
-          if (response.status === 404) {
-            error = 'UserName Taken';
-            return error
-          } else {
-            error = 'Failed to update name';
-            return error
-          }
+          return rejectWithValue('Failed to update name');
         }
       } catch (err) {
         console.error('Error:', err);
-        error = 'No Server Response';
-        return error 
+        return rejectWithValue('No Server Response'); 
       }
     }
   );
@@ -246,8 +238,7 @@ const settingSlice = createSlice({
             state.errMsg = error    
         })
         .addCase(submitName.rejected, (state, action) => {
-            const {error } = action.payload;
-            state.errMsg = error
+            state.errMsg = action.payload
         })
         .addCase(submitPwd.fulfilled, (state, action) => {
             console.log(action.payload)

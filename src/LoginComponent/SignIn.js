@@ -18,7 +18,7 @@ const SignIn = () => {
     });
 
     const Auth = useSelector((state) => state.auth);
-    const {error, isLoggedIn } = Auth;
+    const {error, isLoggedIn, accessToken} = Auth;
     const dispatch = useDispatch();
 
     const handleChange = (e) => {
@@ -35,10 +35,10 @@ const SignIn = () => {
     } 
 
     useEffect(() => {
-        if (isLoggedIn) {
+        if (isLoggedIn && accessToken !== null ) {
             navigate("/dashboard");
         }
-    }, [isLoggedIn, navigate]);
+    }, [isLoggedIn, accessToken, navigate]);
 
     return (
         <div className="signIn">

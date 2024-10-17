@@ -9,6 +9,7 @@ import getQuizByCourse from './helperFunc';
 import copyToClipboard from '../component/copyToClipboard';
 import { Link } from 'react-router-dom';
 import './created.css';
+import useAxiosPrivate from '../Api/useAxiosPrivate'
 
 const Created = () => {
     const userId = useSelector(state => state.auth.userId);
@@ -19,6 +20,7 @@ const Created = () => {
     const { toggle } = toggles;
     const [selectedKey, setSelectedKey] = useState(null);
     const [showPopup, setShowPopup] = useState({});
+    const axiosPrivate = useAxiosPrivate()
 
     const handleKeyClick = (key) => {
         setSelectedKey(key);
@@ -27,10 +29,10 @@ const Created = () => {
             ...Object.fromEntries(Object.entries(prevState).map(([k, v]) => [k, k === key])),
             [key]: !prevState[key]
         }));
-        dispatch(fetchTeacherDetails(key));
+        dispatch(fetchTeacherDetails({id: key, axiosPrivate}));
     }
     useEffect(() => {
-        dispatch(fetchTeacherQuiz(userId))
+        dispatch(fetchTeacherQuiz({userId, axiosPrivate}))
     }, [userId, dispatch]);
 
     const handleCourses = () => {

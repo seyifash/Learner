@@ -7,12 +7,15 @@ import { toggleActions } from './dashBoardToggleRducer';
 import { dashBoardNavItems } from './navbarItems';
 import DashboardItem from './DashBoardItem';
 import 'boxicons/css/boxicons.min.css';
+import axios from 'axios'
+import useAxiosPrivate from '../Api/useAxiosPrivate';
 
 const NavBar = () => { 
     const toggles = useSelector(state => state.toggle) 
-    const { toggle, darkMode, activeItem } = toggles;
+    const { toggle, mode, activeItem } = toggles;
     const dispatch =  useDispatch()
     const navigate = useNavigate();
+    const axiosPrivate = useAxiosPrivate()
 
     const [screenSize] = useState({
         isMobile: window.matchMedia("(max-width: 477px)").matches,
@@ -28,9 +31,13 @@ const NavBar = () => {
 
 
     useEffect(() => {
-        const handleLogoutEvent = (event) => {
+        const handleLogoutEvent = async (event) => {
             if (event.key === 'logoutEvent') {
+                const logResponse = await axiosPrivate.post('https://Osei.pythonanywhere.com/api/learners/v1/logout/',{}, {withCredentials: true});
+                if(logResponse.status === 200){
                 dispatch(authActions.logOut());
+                console.log('I logged out')
+                }
                 navigate("/sign-in");
             }
         };
@@ -47,14 +54,30 @@ const NavBar = () => {
         dispatch(toggleActions.toggleActiveItem(itemId))
     };
 
-    const handleMode = () => {
-        dispatch(toggleActions.toggleDarkMode())
+    const handleMode = async () => {
+        if(mode === 'light') {
+            dispatch(toggleActions.toggleMode('dark'))
+        } else{
+            dispatch(toggleActions.toggleMode('light'))
+        }
+        const modeResponse = await axios.post('https://Osei.pythonanywhere.com/api/learners/v1/change-theme/',
+            {theme: mode },
+            {withCredentials: true}
+        );
+       
         document.body.classList.toggle('dark');
     }
 
-    const handleLogout = () => {
+    const handleLogout = async() => {
+        const logResponse = await axios.post('https://Osei.pythonanywhere.com/api/learners/v1/logout/',{},
+            {withCredentials: true}
+        );
+        console.log(logResponse )
+        if(logResponse.status === 200){
         dispatch(authActions.logOut());
+        console.log('I logged out')
         navigate("/sign-in");
+        }
     };
 
 
@@ -72,7 +95,7 @@ const NavBar = () => {
                             <i class='bx bx-moon icon moon'></i>
                             <i class='bx bx-sun icon sun'></i>
                         </div>
-                        <span className="mode-text text">{darkMode ? "Light Mode" : "Dark Mode"}</span>
+                        <span className="mode-text text">{mode === 'light' ? "Light Mode" : "Dark Mode"}</span>
                         <div className="toggle-switch" onClick={handleMode}>
                             <span className="switch"></span>
                         </div>

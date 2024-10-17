@@ -4,6 +4,7 @@ import { TestActions, submitQuestion } from './TestReducer';
 import './AddExisting.css';
 import { Link } from 'react-router-dom';
 import getQuestionsBySubject from './utils';
+import useAxiosPrivate from '../Api/useAxiosPrivate';
 
 const AddExisting = () => {
     const userId = useSelector(state => state.auth.userId);
@@ -11,6 +12,8 @@ const AddExisting = () => {
     const { showQuestion, testDuration, quizId, code, filename, Question, subject } = test;
     const dispatch = useDispatch()
     const [checkedStates, setCheckedStates] = useState(Array(Question.length).fill(null));
+    const axiosPrivate = useAxiosPrivate();
+    console.log(subject)
     
     const [info, setInfo] = useState({
         subject: '',
@@ -39,7 +42,7 @@ const AddExisting = () => {
 
     const submitQuestions = async () => {
         const questionIds = checkedStates.filter(state => state !== null);
-        dispatch(submitQuestion({userId, questionIds, testDuration, subject}));
+        dispatch(submitQuestion({userId, questionIds, testDuration, subject, axiosPrivate}));
         setCheckedStates(Array(Question.length).fill(null));
         console.log(questionIds);
     };
@@ -70,7 +73,7 @@ const AddExisting = () => {
                 <div className="quiz-id-section">
                     <h2>Copy Test Link For Students</h2>
                     <div className="link">
-                        <span>api/learners/v1/take-quiz/{quizId}</span>
+                        <span>https://Osei.pythonanywhere.com/api/learners/v1/take-quiz/{quizId}</span>
                         <span><i class='bx bx-copy' onClick={() => copyToClipboard(`https://Osei.pythonanywhere.com/api/learners/v1/take-quiz/${quizId}`)}></i></span>
                     </div>
                     <span className="pass"><strong>Passcode: {code} </strong><i class='bx bx-copy' onClick={() => copyToClipboard(`${code}`)}></i></span>
@@ -78,7 +81,7 @@ const AddExisting = () => {
                 </div>
             ) : (
                 <div>
-                     <h2 style={{ display: showQuestion ? 'block' : 'none' }}>Create Quiz from Existing Question</h2>
+                    <h2 style={{ display: showQuestion ? 'block' : 'none' }}>Create Quiz from Existing Question</h2>
                     {testDuration !== null && !showQuestion ? (
                         <>
                             <h4>Select Question</h4>

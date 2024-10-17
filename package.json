@@ -1,7 +1,6 @@
 {
   "name": "authentication",
   "version": "0.1.0",
-  "proxy": "https://osei.pythonanywhere.com",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
@@ -11,6 +10,7 @@
     "axios": "^1.6.8",
     "boxicons": "^2.1.4",
     "chart.js": "^4.4.2",
+    "js-cookie": "^3.0.5",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",

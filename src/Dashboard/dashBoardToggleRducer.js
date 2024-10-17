@@ -1,12 +1,17 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { refreshAccessToken  } from '../Api/useRefreshTokenHook';
+import useAxiosPrivate from '../Api/useAxiosPrivate';
 
-const QUESTION_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/all-questions';
-const STUDENT_COUNT_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/get-students';
+const QUESTION_URI = 'api/learners/v1/all-questions';
+const STUDENT_COUNT_URI = '/api/learners/v1/get-students';
+
+
+const  mode  = sessionStorage.getItem('mode');
 
 const initialState = {
     toggle: false,
-    darkMode: false,
+    Mode: mode,
     activeItem: null,
     questions: [],
     error: '',
@@ -18,22 +23,26 @@ const initialState = {
     currentPage: 1,
 }
 
-export const fetchQuestion =  createAsyncThunk('get/fetchQuestion', async () => {
+export const fetchQuestion =  createAsyncThunk('get/fetchQuestion', async (axiosPrivate, { rejectWithValue }) => {
     try{
-        const response = await axios.get(QUESTION_URI)
+        const response = await axiosPrivate.get('/api/learners/v1/all-questions')
         return response.data;
+
     }catch(error) {
-        return error.message
-    }
+        console.log(error.message)
+        return rejectWithValue(error.message); 
+        }    
 })
 
-export const fetchStudentCount = createAsyncThunk('student/fetchStudentCount', async () => {
+export const fetchStudentCount = createAsyncThunk('student/fetchStudentCount', async (axiosPrivate, { rejectWithValue }) => {
+    
+
       try {
-        const response = await axios.get(STUDENT_COUNT_URI);
+        const response = await axiosPrivate.get(STUDENT_COUNT_URI);
         return response.data.totalStudents;
       } catch (error) {
         console.error('Error fetching student count:', error.message);
-        return error.message;
+        return rejectWithValue(error.message);
       }
     }
   );
@@ -45,8 +54,8 @@ const ToggleSlice = createSlice({
         toggleBar(state){
             state.toggle = !state.toggle;
         },
-        toggleDarkMode(state){
-            state.darkMode = !state.darkMode;
+        toggleMode(state, action){
+            state.Mode = action.payload;
         },
         toggleActiveItem(state, action){
             state.activeItem = action.payload

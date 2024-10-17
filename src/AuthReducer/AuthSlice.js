@@ -6,6 +6,8 @@ const GET_USER_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/login';
 
 const storedUserId = sessionStorage.getItem('userId');
 const storedTeacherImage = sessionStorage.getItem('teacherImage');
+const storedCsrfToken = sessionStorage.getItem('csrf_token')
+const storedMode = sessionStorage.getItem('mode')
 
 const initialState = {
     loading: false,
@@ -14,6 +16,8 @@ const initialState = {
     isLoggedIn: !!storedUserId, 
     success: false, 
     teacherImage: storedTeacherImage ? storedTeacherImage : null,
+    csrfToken: storedCsrfToken ? storedCsrfToken : null,
+    mode: storedMode ? storedMode : 'light'
 }
 
 export const createUser = createAsyncThunk('userId/createUser', async (formData) => {
@@ -21,10 +25,12 @@ export const createUser = createAsyncThunk('userId/createUser', async (formData)
         const response = await axios.post(POST_URI, JSON.stringify(formData), {
             headers:  {"Content-Type": 'application/json' }
         });
-        const { teacherId, isValid } = response.data;
+        const { teacherId, isValid, theme, csrf_access_token  } = response.data;
         if (isValid) {
-            localStorage.setItem('userId', teacherId)
-            return teacherId;
+            sessionStorage.setItem('userId', teacherId)
+            sessionStorage.setItem('csrf_token', csrf_access_token )
+            sessionStorage.setItem('mode', theme)
+            return { teacherId, csrf_access_token } 
         } else {
             throw new Error("User registration failed");
         }
@@ -36,14 +42,18 @@ export const createUser = createAsyncThunk('userId/createUser', async (formData)
 export const getUser = createAsyncThunk('userId/getUser', async (formData) => {
     try{
         const response = await axios.post(GET_USER_URI, JSON.stringify(formData), {
-            headers: {"Content-Type" : 'application/json'}
+            headers: {"Content-Type" : 'application/json'},
+            withCredentials: true
             });
-
-        const { teacherId, isValid, teacherImage } = response.data;
+        const { teacherId, isValid, teacherImage,theme, csrf_access_token } = response.data;
+        
         if (isValid) {
-            sessionStorage.setItem('userId', teacherId)
+           sessionStorage.setItem('userId', teacherId)
             sessionStorage.setItem('teacherImage', teacherImage);
-            return { teacherId, teacherImage};
+            sessionStorage.setItem('csrf_token', csrf_access_token );
+            sessionStorage.setItem('mode', theme)
+            console.log(teacherImage)
+            return { teacherId, teacherImage, csrf_access_token , theme};
         } else {
             throw new Error("User does not exist");
         }
@@ -64,10 +74,12 @@ const AuthSlice = createSlice({
         logOut(state) {
                 sessionStorage.removeItem('userId')
                 sessionStorage.removeItem('teacherImage')
+                sessionStorage.removeItem('csrf_token')
                 sessionStorage.setItem('logoutEvent', Date.now());
                 state.isLoggedIn =  false
                 state.userId = null
                 state.teacherImage = null;
+                state.csrfToken = null;
         },
         setErrorMsg(state, action) {
             state.error = action.payload
@@ -75,6 +87,10 @@ const AuthSlice = createSlice({
         updateImage(state, action) {
             state.teacherImage = action.payload
             sessionStorage.setItem('teacherImage', action.payload);
+        },
+        updateAccessToken(state, action){
+            state.csrfToken = action.payload
+            sessionStorage.setItem('csrf_token', action.payload)
         }
 
     },
@@ -88,24 +104,31 @@ const AuthSlice = createSlice({
             if(action.payload) {
                 state.isLoggedIn = true;
             }
-            state.userId = action.payload
+            const {teacherId , csrf_access_token , theme} = action.payload
+            state.userId = teacherId
+            state.csrfToken = csrf_access_token 
+            state.mode = theme
             state.success = true
             state.error = ''
         })
         .addCase(createUser.rejected, (state, action) => {
             state.loading = false
             state.userId = null
+            state.csrfToken = null
             state.isLoggedIn =  false
             state.success = false
             state.error = action.payload
+            state.theme = 'light'
         })
         .addCase(getUser.pending, (state) => {
             state.loading = true;
         })
         .addCase(getUser.fulfilled, (state, action) => {
-            const {teacherId , teacherImage} = action.payload
+            const {teacherId , teacherImage, csrf_access_token , theme} = action.payload
             state.loading = false;
             state.userId = teacherId;
+            state.csrfToken = csrf_access_token 
+            state.mode = theme
             if(teacherId){
                 state.isLoggedIn = true
             }

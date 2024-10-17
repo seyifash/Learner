@@ -6,12 +6,14 @@ import QuestionForm from './QuestionForm';
 import { Link } from 'react-router-dom';
 import Preset from './Preset'
 import './AddNew.css';
+import useAxiosPrivate from '../Api/useAxiosPrivate';
 
 const AddNew = () => {
     const userId = useSelector(state => state.auth.userId);
     const test = useSelector(state => state.test);
     const {numOfQuestions, subject , testDuration, showForm, quizId, code, filename, testQuestions} = test;
     const dispatch = useDispatch()
+    const axiosPrivate = useAxiosPrivate()
 
     const handleQuestionChange = (questionDetails, questionNumber) => {
         const updatedQuestions = [...testQuestions];
@@ -22,7 +24,7 @@ const AddNew = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(createNewQuiz({ userId, questions: testQuestions, testDuration, subject }))
+        dispatch(createNewQuiz({ userId, questions: testQuestions, testDuration, subject , axiosPrivate}))
     };
 
     const copyToClipboard = (text) => {
@@ -37,7 +39,7 @@ const AddNew = () => {
                 <div className="quiz-id-section">
                     <h2>Copy Test Link For Students</h2>
                     <div className="link">
-                        <span>api/learners/v1/take-quiz/{quizId}</span>
+                        <span>https://Osei.pythonanywhere.com/api/learners/v1/take-quiz/{quizId}</span>
                         <span><i class='bx bx-copy' onClick={() => copyToClipboard(`https://Osei.pythonanywhere.com/api/learners/v1/take-quiz/${quizId}`)}></i></span>
                     </div>
                     <span className="pass">PassCode: {code} <i class='bx bx-copy' onClick={() => copyToClipboard(`${code}`)}></i></span>

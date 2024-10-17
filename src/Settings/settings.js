@@ -7,6 +7,7 @@ import TopBar from '../component/TopBar';
 import "../Dashboard/dashboard.css";
 import 'boxicons/css/boxicons.min.css';
 import './setting.css';
+import useAxiosPrivate from '../Api/useAxiosPrivate';
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9\s-_]{1,38}[a-zA-Z0-9]$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -30,9 +31,12 @@ const Settings = () => {
         showPwdPop, userFocus} = setting
     const { toggle } = toggles;
     const dispatch = useDispatch();
+    const axiosPrivate = useAxiosPrivate();
+
+
 
     useEffect(() => {
-        dispatch(fetchData(userId));
+        dispatch(fetchData({userId, axiosPrivate}));
     }, [userId, dispatch]);
 
     useEffect(() => {
@@ -58,8 +62,9 @@ const Settings = () => {
     }
 
     const saveImage = async () => {
+        console.log("i am here")
         dispatch(settingActions.updateState())
-        dispatch(saveUpdateImage({userId, image}));
+        dispatch(saveUpdateImage({userId, image, axiosPrivate}));
     }
 
     const handleEdit = (e) => {
@@ -88,7 +93,7 @@ const Settings = () => {
             dispatch(settingActions.updateImageError('Invalid Entry'))
             return;
         }
-        dispatch(submitName({userId, newName}));
+        dispatch(submitName({userId, newName, axiosPrivate}));
         if(errMsg){
             errRef.current.focus()
         }
@@ -103,7 +108,7 @@ const Settings = () => {
             return;
         }
 
-       dispatch(submitPwd({userId, oldPwd, pwd}));
+       dispatch(submitPwd({userId, oldPwd, pwd, axiosPrivate}));
          if(errMsg) {
             errRef.current.focus()
         }

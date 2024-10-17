@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { refreshAccessToken } from '../Api/useRefreshTokenHook';
 
-const QUESTION_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/all-questions';
-const CREATE_NEW_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/create-new/';
-const CREATE_EXISTING_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/create-existing/';
+const QUESTION_URI = '/api/learners/v1/all-questions/';
+const CREATE_NEW_URI = '/api/learners/v1/create-new/';
+const CREATE_EXISTING_URI = '/api/learners/v1/create-existing/';
 
 
 const initialState = {
@@ -23,7 +24,7 @@ const initialState = {
 }
 
 export const createNewQuiz = createAsyncThunk('quiz/createNewQuiz', 
-    async ({ userId, questions, testDuration, subject } ) => {
+    async ({ userId, questions, testDuration, subject, axiosPrivate } ) => {
         try {
             const formData = new FormData();
             formData.append('questions', JSON.stringify(questions));
@@ -36,7 +37,7 @@ export const createNewQuiz = createAsyncThunk('quiz/createNewQuiz',
                 }
             });
             console.log(formData, userId)
-            const response = await axios.post(CREATE_NEW_URI + userId,  formData);
+            const response = await axiosPrivate.post(CREATE_NEW_URI + userId,  formData);
             if (response.status !== 200) {
                 throw new Error("Creating question failed");
             }
@@ -47,19 +48,22 @@ export const createNewQuiz = createAsyncThunk('quiz/createNewQuiz',
     }
 );
 
-export const fetchTestQuestion =  createAsyncThunk('get/fetchTestQuestion', async () => {
+export const fetchTestQuestion =  createAsyncThunk('get/fetchTestQuestion', async (axiosPrivate, {rejectWithValue}) => {
     try{
-        const response = await axios.get(QUESTION_URI)
+        const response = await axiosPrivate.get(QUESTION_URI)
+        console.log(response)
         return response.data;
     }catch(error) {
-        return error.message
+        console.error('Error fetching test question:', error);
+
+        return rejectWithValue(error.message || 'Failed to fetch test question');
     }
 })
 
 export const submitQuestion = createAsyncThunk('quiz/submitQuestion', 
-    async ({ userId, questionIds, testDuration, subject }) => {
+    async ({ userId, questionIds, testDuration, subject, axiosPrivate }) => {
     try {
-        const response = await axios.post(`${CREATE_EXISTING_URI}${userId}`, {
+        const response = await axiosPrivate.post(`${CREATE_EXISTING_URI}${userId}`, {
             ids: questionIds,
             duration: testDuration,
             Subject: subject
