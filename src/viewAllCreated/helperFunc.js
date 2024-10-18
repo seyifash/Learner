@@ -1,11 +1,10 @@
-export default function getQuizByCourse(id) {
+export default async function getQuizByCourse(id, axiosPrivate) {
     let quiz;
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', `https://Osei.pythonanywhere.com/api/learners/v1/all-questions/${id}`, false);
-    xhr.send();
 
-    if (xhr.status === 200) {
-        quiz = JSON.parse(xhr.responseText);
+    const response = await axiosPrivate.get(`/api/learners/v1/all-questions/${id}`)
+    if (response.status === 200) {
+        quiz = response.data;
+        console.log(quiz)
         const subjects = [];
         quiz.forEach(items => {
             if (items.subject && !subjects.includes(items.subject)) {
@@ -14,7 +13,7 @@ export default function getQuizByCourse(id) {
         });
         return subjects;
     } else {
-        console.error('Error fetching questions:', xhr.statusText);
+        console.error('Error fetching questions:', response.status);
         return [];
     }
 }

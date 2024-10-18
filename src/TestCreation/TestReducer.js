@@ -50,7 +50,7 @@ export const createNewQuiz = createAsyncThunk('quiz/createNewQuiz',
 
 export const fetchTestQuestion =  createAsyncThunk('get/fetchTestQuestion', async (axiosPrivate, {rejectWithValue}) => {
     try{
-        const response = await axiosPrivate.get(QUESTION_URI)
+        const response = await axiosPrivate.get('/api/learners/v1/all-questions')
         console.log(response)
         return response.data;
     }catch(error) {

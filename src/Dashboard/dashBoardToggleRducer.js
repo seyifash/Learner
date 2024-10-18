@@ -1,17 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { refreshAccessToken  } from '../Api/useRefreshTokenHook';
-import useAxiosPrivate from '../Api/useAxiosPrivate';
 
-const QUESTION_URI = 'api/learners/v1/all-questions';
 const STUDENT_COUNT_URI = '/api/learners/v1/get-students';
 
 
-const  mode  = sessionStorage.getItem('mode');
+const  mode  = localStorage.getItem('mode');
+console.log(mode)
 
 const initialState = {
     toggle: false,
-    Mode: mode,
+    mode: mode,
     activeItem: null,
     questions: [],
     error: '',
@@ -55,7 +52,8 @@ const ToggleSlice = createSlice({
             state.toggle = !state.toggle;
         },
         toggleMode(state, action){
-            state.Mode = action.payload;
+            state.mode = action.payload;
+            localStorage.setItem('mode', action.payload);
         },
         toggleActiveItem(state, action){
             state.activeItem = action.payload

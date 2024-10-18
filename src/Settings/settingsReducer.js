@@ -45,7 +45,7 @@ export const fetchData = createAsyncThunk(
 
         
         try {
-          const response = await axiosPrivate.get(DATA_URI + userId);
+          const response = await axiosPrivate.get(DATA_URI + userId, {withCredentials: true});
           return response.data;
         } catch (error) {
           console.log('Error fetching data:', error.message);
@@ -65,7 +65,7 @@ export const submitPwd = createAsyncThunk(
         const response = await axiosPrivate.put(PWD_URI + userId, {
           initialPassword: oldPwd,
           newPassword: pwd,
-        });
+        }, {withCredentials: true});
   
         if (response.status === 200) {
           const data = response.data;
@@ -102,7 +102,7 @@ export const submitPwd = createAsyncThunk(
         console.log('Image to upload:', image);
 
         try {
-            const response = await axiosPrivate.put(IMAGE_URI + userId, formData);
+            const response = await axiosPrivate.put(IMAGE_URI + userId, formData, {withCredentials: true});
 
             if (response.status === 200) {
                 const data = response.data;
@@ -129,7 +129,7 @@ export const submitPwd = createAsyncThunk(
       let last = '';
       try {
         console.log("i am good")
-        const response = await axiosPrivate.put(NAME_URI + userId, { newName });
+        const response = await axiosPrivate.put(NAME_URI + userId, { newName }, {withCredentials: true});
   
         if (response.status === 200) {
           [last, first] = newName.split(' ');

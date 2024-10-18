@@ -23,17 +23,16 @@ const DashBoard = () => {
   const subjectsList = uniqueSubjects(questions);
   console.log(subjectsList)
   const axiosPrivate = useAxiosPrivate();
-  console.log('Axios instance from useAxiosPrivate:', axiosPrivate);
 
   useEffect(() => {
     console.log('before dispatch')
     dispatch(fetchQuestion(axiosPrivate));
     console.log('after dispatch')
-  }, [dispatch]);
+  }, [dispatch, axiosPrivate]);
 
   useEffect(() => {
     dispatch(fetchStudentCount(axiosPrivate));
-  }, [dispatch]);
+  }, [dispatch, axiosPrivate]);
 
   const totalPages = Math.ceil(questions.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;

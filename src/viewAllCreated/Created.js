@@ -33,11 +33,12 @@ const Created = () => {
     }
     useEffect(() => {
         dispatch(fetchTeacherQuiz({userId, axiosPrivate}))
-    }, [userId, dispatch]);
+    }, [userId, dispatch, axiosPrivate]);
 
-    const handleCourses = () => {
+    const handleCourses =  async () => {
         dispatch(createdActions.handleView(false))
-        const courses = getQuizByCourse(userId);
+        const courses = await getQuizByCourse(userId, axiosPrivate);
+        console.log(courses)
         dispatch(createdActions.Courses(courses));
     }
 

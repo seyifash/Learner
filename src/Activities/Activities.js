@@ -7,6 +7,7 @@ import { Bar } from "react-chartjs-2";
 import { Chart as ChartJs } from "chart.js/auto";
 import axios from 'axios';
 import './Activities.css';
+import useAxiosPrivate from '../Api/useAxiosPrivate'
 
 const Activities = () => {
     const toggles = useSelector(state => state.toggle);
@@ -14,11 +15,12 @@ const Activities = () => {
     const { toggle } = toggles;
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
+    const axiosPrivate = useAxiosPrivate()
 
     useEffect(() => {
         const fetch = async () => {
             try {
-                const response = await axios.get(`https://Osei.pythonanywhere.com/api/learners/v1/activities_total/${userId}`);
+                const response = await axiosPrivate.get(`api/learners/v1/activities_total/${userId}`);
                 console.log(response.data);
                 const datas = response.data;
                 if (datas.length > 0) {

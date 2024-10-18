@@ -7,14 +7,15 @@ import { toggleActions } from './dashBoardToggleRducer';
 import { dashBoardNavItems } from './navbarItems';
 import DashboardItem from './DashBoardItem';
 import 'boxicons/css/boxicons.min.css';
-import axios from 'axios'
 import useAxiosPrivate from '../Api/useAxiosPrivate';
 
 const NavBar = () => { 
     const toggles = useSelector(state => state.toggle) 
     const { toggle, mode, activeItem } = toggles;
+    console.log(mode)
     const dispatch =  useDispatch()
     const navigate = useNavigate();
+    const {userId }= useSelector(state => state.auth)
     const axiosPrivate = useAxiosPrivate()
 
     const [screenSize] = useState({
@@ -33,8 +34,9 @@ const NavBar = () => {
     useEffect(() => {
         const handleLogoutEvent = async (event) => {
             if (event.key === 'logoutEvent') {
-                const logResponse = await axiosPrivate.post('https://Osei.pythonanywhere.com/api/learners/v1/logout/',{}, {withCredentials: true});
-                if(logResponse.status === 200){
+                const logResponse = await axiosPrivate.post('/api/learners/v1/logout/',{});
+                console.log(logResponse)
+                if(logResponse.status === 200 && logResponse.data.logout === true){
                 dispatch(authActions.logOut());
                 console.log('I logged out')
                 }
@@ -47,30 +49,37 @@ const NavBar = () => {
         return () => {
             window.removeEventListener('storage', handleLogoutEvent);
         };
-    }, [dispatch, navigate]);
+    }, [dispatch, navigate, axiosPrivate]);
     
 
     const handleMouseOver = (itemId) => {
         dispatch(toggleActions.toggleActiveItem(itemId))
     };
 
-    const handleMode = async () => {
-        if(mode === 'light') {
-            dispatch(toggleActions.toggleMode('dark'))
-        } else{
-            dispatch(toggleActions.toggleMode('light'))
+    useEffect(() => {
+        if (mode === 'dark') {
+            document.body.classList.add('dark');
+        } else {
+            document.body.classList.remove('dark');
         }
-        const modeResponse = await axios.post('https://Osei.pythonanywhere.com/api/learners/v1/change-theme/',
-            {theme: mode },
-            {withCredentials: true}
-        );
-       
-        document.body.classList.toggle('dark');
-    }
+    }, [mode]);
+
+    const handleMode = async () => {
+        const newMode = mode === 'light' ? 'dark' : 'light';
+        dispatch(toggleActions.toggleMode(newMode));
+
+        try {
+            const modeResponse = await axiosPrivate.put(`/api/learners/v1/change-theme/${userId}`, {
+                theme: newMode
+            });
+            console.log(modeResponse);
+        } catch (err) {
+            console.error(err.message);
+        }
+    };
 
     const handleLogout = async() => {
-        const logResponse = await axios.post('https://Osei.pythonanywhere.com/api/learners/v1/logout/',{},
-            {withCredentials: true}
+        const logResponse = await axiosPrivate.post('/api/learners/v1/logout',{}
         );
         console.log(logResponse )
         if(logResponse.status === 200){

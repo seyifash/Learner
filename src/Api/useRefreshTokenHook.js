@@ -22,7 +22,6 @@ const useRefreshToken = () => {
   const refresh = async () => {
     const response = await axios.get('https://osei.pythonanywhere.com/api/learners/v1/token/refresh', {
       withCredentials: true});
-      console.log(response.data.csrf_access_token)
       dispatch(authActions.updateAccessToken(response.data.csrf_access_token))
         return {refresh: response.data.refresh, csrf_token: response.data.csrf_access_token}
     }

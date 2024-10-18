@@ -7,6 +7,7 @@ import "../Dashboard/dashboard.css";
 import 'boxicons/css/boxicons.min.css';
 import MyTable from './StudentTable';
 import './student.css'
+import useAxiosPrivate from '../Api/useAxiosPrivate';
 
 const Students = () => {
     const toggles = useSelector(state => state.toggle);
@@ -14,15 +15,17 @@ const Students = () => {
     const { toggle } = toggles;
     const [ tableData, setTableData] = useState([]);
 
+    const axiosPrivate = useAxiosPrivate()
+
 
     useEffect(() => {
         const showStudents = async () => {
           try {
-          const response = await fetch(`https://Osei.pythonanywhere.com/api/learners/v1/get-students/${userId}`);
-          if(!response.ok) {
+          const response = await axiosPrivate.get(`/api/learners/v1/get-students/${userId}`);
+          if(response.status !== 200) {
             console.log('failed to fetch student');
           }
-          const Data = await response.json();
+          const Data = response.data;
           console.log(Data);
           setTableData(Data);
         }catch(error) {

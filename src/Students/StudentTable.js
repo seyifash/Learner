@@ -5,6 +5,10 @@ class MyTable extends React.Component {
   render() {
     const { data } = this.props;
 
+    if (!data || data.length === 0) {
+      return <div>No quiz yet.</div>;
+    }
+
     return (
       <div className="studentTable">
         <h1>Student Scores</h1>
@@ -18,8 +22,16 @@ class MyTable extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {data.map((quiz, index) => (
-              quiz.student.map((student, idx) => (
+            {data.map((quiz, index) => {
+              if (!quiz.student || quiz.student.length === 0) {
+                return (
+                  <tr key={index}>
+                    <td className="candidate-info" colSpan="4">No students yet for Quiz {index + 1}</td>
+                  </tr>
+                );
+              }
+
+              return quiz.student.map((student, idx) => (
                 <tr key={`${index}-${idx}`}>
                   {idx === 0 && (
                     <React.Fragment>
@@ -31,7 +43,7 @@ class MyTable extends React.Component {
                   <td className="candidate-info">{student.score}</td>
                 </tr>
               ))
-            ))}
+          })}
           </tbody>
         </table>
       </div>

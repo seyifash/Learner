@@ -13,31 +13,25 @@ const useAxiosPrivate = () => {
 
         const requestIntercept = axiosPrivate.interceptors.request.use(
             config => {
-                console.log('Request Interceptor:', config);
                 if (!config.headers['X-CSRF-TOKEN']) {
                     config.headers['X-CSRF-TOKEN'] = csrf_token;
-                    console.log('CSRF Token added to request headers:', config.headers['X-CSRF-TOKEN']);
                 }
                 return config;
             },
             error => {
-                console.error('Request error:', error);
                 return Promise.reject(error);
             }
         );
         
         const responseIntercept = axiosPrivate.interceptors.response.use(
             response => {
-                console.log('Response Interceptor:', response);
                 return response;
             },
             async (error) => {
-                console.error('Response error:', error);
                 const prevRequest = error?.config;
                 if (error?.response?.status === 401 && !prevRequest?.sent) {
                     prevRequest.sent = true;
                     const { csrf_token } = await refresh();
-                    console.log('Refreshing token:', csrf_token);
                     prevRequest.headers['X-CSRF-TOKEN'] = csrf_token;
                     return axiosPrivate(prevRequest);
                 }

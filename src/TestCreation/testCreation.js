@@ -21,6 +21,7 @@ const TestCreation = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log('fetching questions')
       dispatch(fetchTestQuestion(axiosPrivate))
   }, [dispatch])
   

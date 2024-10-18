@@ -1,8 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-
-const DETAILS_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/quiz-details/';
-const QUIZ_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/teacher-quiz/';
 
 
 const initialState = {
@@ -18,7 +14,7 @@ const initialState = {
 
 export const fetchTeacherQuiz =  createAsyncThunk('get/fetchTeacherQuiz', async ({userId, axiosPrivate}) => {
     try{
-        const response = await axiosPrivate.get(QUIZ_URI + userId)
+        const response = await axiosPrivate.get(`/api/learners/v1/teacher-quiz/${userId}`)
         return response.data;
     }catch(error) {
         return error.message
@@ -27,7 +23,7 @@ export const fetchTeacherQuiz =  createAsyncThunk('get/fetchTeacherQuiz', async 
 
 export const fetchTeacherDetails =  createAsyncThunk('get/fetchTeacherDetails', async ({id, axiosPrivate}) => {
     try{
-        const response = await axiosPrivate.get(DETAILS_URI + id)
+        const response = await axiosPrivate.get(`/api/learners/v1/quiz-details/${id}`)
         const data = response.data
         return { 'data':data, 'id': id };
     }catch(error) {
