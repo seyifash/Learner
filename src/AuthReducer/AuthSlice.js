@@ -6,7 +6,7 @@ const GET_USER_URI = 'https://Osei.pythonanywhere.com/api/learners/v1/login';
 
 const storedUserId = localStorage.getItem('userId');
 const storedTeacherImage = localStorage.getItem('teacherImage');
-const storedCsrfToken = localStorage.getItem('csrf_token')
+const storedCsrfToken = sessionStorage.getItem('csrf_token')
 const storedMode = localStorage.getItem('mode')
 
 const initialState = {
@@ -28,7 +28,7 @@ export const createUser = createAsyncThunk('userId/createUser', async (formData)
         const { teacherId, isValid, theme, csrf_access_token  } = response.data;
         if (isValid) {
             localStorage.setItem('userId', teacherId)
-            localStorage.setItem('csrf_token', csrf_access_token )
+            sessionStorage.setItem('csrf_token', csrf_access_token )
             localStorage.setItem('mode', theme)
             return { teacherId, csrf_access_token } 
         } else {
@@ -50,7 +50,7 @@ export const getUser = createAsyncThunk('userId/getUser', async (formData) => {
         if (isValid) {
            localStorage.setItem('userId', teacherId)
             localStorage.setItem('teacherImage', teacherImage);
-            localStorage.setItem('csrf_token', csrf_access_token );
+            sessionStorage.setItem('csrf_token', csrf_access_token );
             localStorage.setItem('mode', theme)
             console.log(teacherImage)
             return { teacherId, teacherImage, csrf_access_token , theme};
@@ -74,7 +74,7 @@ const AuthSlice = createSlice({
         logOut(state) {
                 localStorage.removeItem('userId')
                 localStorage.removeItem('teacherImage')
-                localStorage.removeItem('csrf_token')
+                sessionStorage.removeItem('csrf_token')
                 localStorage.setItem('logoutEvent', Date.now());
                 state.isLoggedIn =  false
                 state.userId = null
