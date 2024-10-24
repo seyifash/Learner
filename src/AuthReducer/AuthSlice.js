@@ -20,7 +20,7 @@ const initialState = {
     mode: storedMode ? storedMode : 'light'
 }
 
-export const createUser = createAsyncThunk('userId/createUser', async (formData) => {
+export const createUser = createAsyncThunk('userId/createUser', async (formData, {rejectWithValue}) => {
     try{
         const response = await axios.post(POST_URI, JSON.stringify(formData), {
             headers:  {"Content-Type": 'application/json' }
@@ -35,11 +35,11 @@ export const createUser = createAsyncThunk('userId/createUser', async (formData)
             throw new Error("User registration failed");
         }
     }catch(err){
-        return err.message;
+        return rejectWithValue("User Registration failed");
     }
 })
 
-export const getUser = createAsyncThunk('userId/getUser', async (formData) => {
+export const getUser = createAsyncThunk('userId/getUser', async (formData, {rejectWithValue}) => {
     try{
         const response = await axios.post(GET_USER_URI, JSON.stringify(formData), {
             headers: {"Content-Type" : 'application/json'},
@@ -47,19 +47,21 @@ export const getUser = createAsyncThunk('userId/getUser', async (formData) => {
             });
         const { teacherId, isValid, teacherImage,theme, csrf_access_token } = response.data;
         
-        if (isValid) {
+        if (isValid === true) {
            localStorage.setItem('userId', teacherId)
             localStorage.setItem('teacherImage', teacherImage);
             sessionStorage.setItem('csrf_token', csrf_access_token );
             localStorage.setItem('mode', theme)
-            console.log(teacherImage)
             return { teacherId, teacherImage, csrf_access_token , theme};
         } else {
             throw new Error("User does not exist");
         }
 
     } catch(err){
-        return err.message;
+        if(err.response && err.response.status === 404){
+            return rejectWithValue('Incorrect password or Email')
+        }
+        return rejectWithValue(err.message);
     }
 })
 
@@ -117,7 +119,7 @@ const AuthSlice = createSlice({
             state.csrfToken = null
             state.isLoggedIn =  false
             state.success = false
-            state.error = action.payload
+            state.error = action.payload;
             state.theme = 'light'
         })
         .addCase(getUser.pending, (state) => {
@@ -138,7 +140,7 @@ const AuthSlice = createSlice({
         })
         .addCase(getUser.rejected, (state, action) => {
             state.loading = false;
-            state.error = action.payload;
+            state.error = action.payload;;
         });
     }
 })

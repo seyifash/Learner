@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
+import { authActions } from  "../AuthReducer/AuthSlice";
 import {  useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import InputGenerator from "./inputGenerator";
@@ -45,7 +46,6 @@ const SignIn = () => {
             <h1>Hello</h1>
             <h3>welcome Back Tutors</h3>
             <section className="section-signin">
-                <p ref={errRef} className={error ? "errmsg" : "offscreen"} aria-live="assertive">{error}</p>
                 <h1>Login</h1>
                 <form onSubmit={handleSubmit}>
                     <LabelGenerator htmlFor="email" text="Email:" name={formData.email} />
@@ -56,6 +56,7 @@ const SignIn = () => {
                     <button disabled={!formData.password || !formData.email ? true : false}>
                         Sign In
                     </button>
+                    <p ref={errRef} className={error ? "errmsg" : "offscreen"} aria-live="assertive">{error}</p>
                     <span className="forgotPwd"><Link to='/forgotPwd'>Forgot password?</Link></span>
                 </form>
                 <p>

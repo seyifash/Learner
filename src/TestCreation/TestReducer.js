@@ -1,8 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { refreshAccessToken } from '../Api/useRefreshTokenHook';
 
-const QUESTION_URI = '/api/learners/v1/all-questions/';
+//const QUESTION_URI = '/api/learners/v1/all-questions/';
 const CREATE_NEW_URI = '/api/learners/v1/create-new/';
 const CREATE_EXISTING_URI = '/api/learners/v1/create-existing/';
 

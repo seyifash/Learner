@@ -96,7 +96,7 @@ export const submitPwd = createAsyncThunk(
         let success = '';
         let errors = '';
         const formData = new FormData();
-        formData.append('image', image);
+        formData.append('image', image, 'profile-picture.png');
 
         console.log('Request URL:', IMAGE_URI + userId);
         console.log('Image to upload:', image);

@@ -26,7 +26,8 @@ const SignUp = () => {
 
     const loginVerifyState = useSelector((state) => state.loginVerify);
     const Auth = useSelector((state) => state.auth);
-    const { error, isLoggedIn} = Auth;
+    const { error, isLoggedIn, accessToken} = Auth;
+    console.log(error)
     const dispatch = useDispatch();
 
     const handleChange = (e) => {
@@ -74,9 +75,10 @@ const SignUp = () => {
         } else {
            dispatch(createUser(formData));
         }
-    } 
+    }
+    
     useEffect(() => {
-        if(isLoggedIn){
+        if(isLoggedIn && accessToken !== null){
             return  navigate("/dashboard");
         }
     })
@@ -122,6 +124,7 @@ const SignUp = () => {
                         <button disabled={!validFirstName || !validLastName || !validPwd || !validMatch || !formData.institution || !formData.email ? true : false}>
                             Sign Up
                         </button>
+                        <p ref={errRef} className={error ? "errmsg" : "offscreen"} aria-live="assertive">{error}</p>
                     </form>
                     <p>
                         Already registered?<br />

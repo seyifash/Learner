@@ -8,10 +8,11 @@ import "../Dashboard/dashboard.css";
 import 'boxicons/css/boxicons.min.css';
 import './setting.css';
 import useAxiosPrivate from '../Api/useAxiosPrivate';
+import CropImage from './CropImage';
+import { dataURLToBlob } from './setCanvasPreview';
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9\s-_]{1,38}[a-zA-Z0-9]$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-
 
 const Settings = () => {
     const toggles = useSelector(state => state.toggle);
@@ -33,7 +34,7 @@ const Settings = () => {
     const dispatch = useDispatch();
     const axiosPrivate = useAxiosPrivate();
 
-
+    const [dataUrl, setDataUrl] = useState(true)
 
     useEffect(() => {
         dispatch(fetchData({userId, axiosPrivate}));
@@ -44,11 +45,13 @@ const Settings = () => {
         console.log(newName);
     }, [newName, dispatch])
 
+
     useEffect(() => {
         dispatch(settingActions.setValidPwd({pwd: pwd, matchPwd: matchPwd}));
     }, [pwd, matchPwd, dispatch])
 
     useEffect(() => {
+        console.log("Updated image URL:", updatedImage);
         if(updatedImage){
             dispatch(authActions.updateImage(updatedImage))
         }
@@ -58,13 +61,23 @@ const Settings = () => {
     const handleChange = (e) => {
         console.log('I am in here');
         const file = e.target.files[0];
+        if(!file) return;
         dispatch(settingActions.setImage(file))
+        if(file){
+            setDataUrl(false)
+        }
     }
-
-    const saveImage = async () => {
+    const saveImage = async (dataUrl) => {
         console.log("i am here")
+
+        console.log(dataUrl)
+
+        const blob = dataURLToBlob(dataUrl);
+
+    // Dispatch action with FormData
         dispatch(settingActions.updateState())
-        dispatch(saveUpdateImage({userId, image, axiosPrivate}));
+        dispatch(saveUpdateImage({userId, image: blob, axiosPrivate}));
+        setDataUrl(true)
     }
 
     const handleEdit = (e) => {
@@ -80,7 +93,8 @@ const Settings = () => {
     const handleUploadBtnClick = (e) => {
         console.log('i am here');
         e.stopPropagation(); 
-        dispatch(settingActions.Clickable(true)); 
+        dispatch(settingActions.Clickable(true));
+       
     }
 
     const handleNameChange = (e) => {
@@ -146,6 +160,10 @@ const Settings = () => {
         <div className={`main ${toggle ? 'active' : ''}`}>
             <TopBar opt={false} />
             <div className="settings" onClick={settingsClickable ? null : handleDisableEdit}>
+                {console.log(dataUrl)}
+                {image && !dataUrl ? (
+                    <CropImage file={image} saveImage={saveImage} setDataUrl={setDataUrl} />
+                ) : (
                 <div className="editpics">
                     {imageSuccess ? (<h4 className="imageSuccess">{imageSuccess} <i class='bx bx-check-circle'></i></h4>) : (
                         <h4 className="imageError">{errorImage}</h4>
@@ -166,13 +184,10 @@ const Settings = () => {
                             <input className="uploadBtn" id="uploadBtn" type="file" name="image" accept="image/*" onChange={handleChange}  />
                         </div>
                         }
-                        {image && editImage && saved &&
-                        <span 
-                        onClick={saveImage}>Save</span>
-                        }
                         </div>
                     </div>
                 </div>
+                )}
 
                 <div className="userName">
                     <h4>Name</h4>
@@ -301,7 +316,7 @@ const Settings = () => {
                         </form>
                     </>)}
                     </div>}
-                </div>
+                </div>) }
             </div>
         </div>
     </div>
